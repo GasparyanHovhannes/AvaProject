@@ -1,0 +1,64 @@
+@font-face {
+  font-family: lexend;
+  src: url("../../font/Lexend-Medium.ttf");
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+.padding_div {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 24px;
+}
+
+.product_item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.title {
+    font-family: lexend;
+    font-size: 32px;
+    color: black;
+    margin-bottom: 50px;
+}
+
+.cover_photo {
+    width: 100%;
+    object-fit: cover; 
+    border-radius: 8px;
+}
+
+.item_title {
+  font-family: lexend;
+  font-size: 20px;
+  color: #1C120D;
+  margin: 12px 0 8px 0;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: normal;
+  max-width: 100%;
+  display: block;
+}
+
+.item_description {
+  font-family: lexend;
+  font-size: 20px;
+  color: #1C120D;
+  margin: 12px 0 8px 0;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: normal;
+  max-width: 100%;
+  display: block;
+}

@@ -5,7 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { HOME_PAGE, ABOUT, PROFILE, LOGIN, DOCTOR_PAGE, PARTNERS, MASTER_PROFILE } from "../routes/paths";
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, DOCTOR_PAGE, PARTNERS, MASTER_PROFILE, SHOP } from "../routes/paths";
 import { useAppSelector } from "../app/hooks";
 import {
   selectUserData,
@@ -49,15 +49,11 @@ const HeaderComponent = () => {
   ];
 
   return (
-    <Header
-      style={{
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: "#001529",
-      }}
-    >
 
-    <Header style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF", borderBottom: "solid rgba(0, 0, 0, 0.5) 1px",  padding: "0" }}>
+    <Header style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF", borderBottom: "solid rgba(0, 0, 0, 0.5) 1px", width: "100%", padding: "0" }}>
+
+
+
       <div style={{ color: "#000", fontSize: "20px", marginRight: "auto", marginLeft: "32px" }}>
         <NavLink to={HOME_PAGE} style={{ color: 'inherit' }}>Áva</NavLink>
       </div>
@@ -73,6 +69,9 @@ const HeaderComponent = () => {
         </Menu.Item>
         <Menu.Item key="4" icon={<TeamOutlined />}>
           <NavLink to={PARTNERS} style={{ color: 'inherit' }}>Our Partners</NavLink>
+        </Menu.Item>
+        <Menu.Item key="4" icon={<UserOutlined />}>
+          <NavLink to={SHOP} style={{ color: 'inherit' }}>Shop</NavLink>
         </Menu.Item>
       </Menu>
 

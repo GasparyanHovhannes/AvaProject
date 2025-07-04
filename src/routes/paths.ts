@@ -5,6 +5,7 @@ export const LOGIN = "/login";
 export const MASTER_PROFILE = "/master-profile";
 export const PARTNERS = "/partners";
 export const SUBSCRIPTION = "/subscription";
+export const SHOP = "/shop";
 export const BOOK_APPOINTMENT = "/book-appointment";
 export const BOOK_APPOINTMENT_ID = "/book-appointment/:id";
 export const DOCTOR_PAGE = "/doctor";
