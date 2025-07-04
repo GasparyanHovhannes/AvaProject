@@ -1,0 +1,26 @@
+.hero-container {
+  position: relative;
+  height: 500px;
+  width: 60%;
+  background-image: url('https://videos.openai.com/vg-assets/assets%2Ftask_01jza9x62hf0kaz5afef59qe6a%2F1751618957_img_0.webp?st=2025-07-04T10%3A21%3A52Z&se=2025-07-10T11%3A21%3A52Z&sks=b&skt=2025-07-04T10%3A21%3A52Z&ske=2025-07-10T11%3A21%3A52Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=8ebb0df1-a278-4e2e-9c20-f2d373479b3a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=MmIcDEPsb69K0nvTnBMFuKJP3KZ%2Fr0K75ymmVEfGdcU%3D&az=oaivgprodscus');
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
+  text-align: center;
+  margin : auto;
+  margin-top: 50px;
+  border-radius: 25px;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 12px;
+  align-items: center;
+  max-width: 500px;
+  margin : auto;
+}
+

@@ -1,9 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
-import { HOME_PAGE, ABOUT, PROFILE } from "./paths";
+import { HOME_PAGE, ABOUT, PROFILE,PARTNERS } from "./paths";
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Profile from "../pages/Profile/Profile";
+import Partners from "../pages/Partners/Partners";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
         element: (
             <Layout>
                 <Profile />
+            </Layout>
+        )
+    },
+    {
+        path: PARTNERS,
+        element: (
+            <Layout>
+                <Partners />
             </Layout>
         )
     }

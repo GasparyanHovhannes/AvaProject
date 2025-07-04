@@ -10,7 +10,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div>
       <HeaderComponent />
-      <main style={{ padding: "80px" }}>
+      <main style={{textAlign:"left"}}>
         {children}
       </main>
     </div>

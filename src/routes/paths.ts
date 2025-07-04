@@ -3,6 +3,7 @@ export const ABOUT = "/about";
 export const SIGNUP = "/sign-up";
 export const LOGIN = "/login";
 export const PROFILE = "/profile";
+export const PARTNERS = "/partners";
 export const BOOK_APPOINTMENT = "/book-appointment";
 export const BOOK_APPOINTMENT_ID = "/book-appointment/:id";
 export const DOCTOR_PAGE = "/doctor";
