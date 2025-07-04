@@ -1,11 +1,15 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
-import { HOME_PAGE, ABOUT, MASTER_PROFILE,PARTNERS, SUBSCRIPTION } from "./paths";
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION } from "./paths";
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
+import Profile from "../pages/Profile/Patientprofile";
+import Login from "../pages/Auth/Login";
+import Signup from "../pages/Auth/Signup";
 import MasterProfileSection from "../pages/MasterProfile/MasterProfile";
 import Partners from "../pages/Partners/Partners";
 import Subscription from "../pages/SubscriptionSave/Subscription";
+
 
 export const router = createBrowserRouter([
     {
@@ -47,5 +51,21 @@ export const router = createBrowserRouter([
                 <Subscription />
             </Layout>
         )
-    }
+    },
+    {
+        path: LOGIN,
+        element: (
+        <Layout>
+            <Login />
+        </Layout>
+        ),
+    },
+    {
+    path: SIGNUP,
+    element: (
+      <Layout>
+        <Signup />
+      </Layout>
+    ),
+    },
 ])

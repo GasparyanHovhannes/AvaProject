@@ -1,12 +1,62 @@
 import { Layout, Menu } from "antd";
-import { HomeOutlined, InfoCircleOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  InfoCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { HOME_PAGE, ABOUT, MASTER_PROFILE, PARTNERS  } from "../routes/paths";
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, DOCTOR_PAGE, PARTNERS, MASTER_PROFILE } from "../routes/paths";
+import { useAppSelector } from "../app/hooks";
+import {
+  selectUserData,
+  selectUserRole,
+  selectUserEmailStatus,
+} from "../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const { Header } = Layout;
 
 const HeaderComponent = () => {
+  const navigate = useNavigate();
+  const userData = useAppSelector(selectUserData);
+  const userRole = useAppSelector(selectUserRole);
+  const userStatus = useAppSelector(selectUserEmailStatus);
+
+  const isLoggedIn = Boolean(userData && userStatus);
+  const profileLink =
+    isLoggedIn && userRole === "doctor"
+      ? DOCTOR_PAGE
+      : isLoggedIn
+      ? PROFILE
+      : LOGIN;
+
+  const menuItems = [
+    {
+      key: "home",
+      icon: <HomeOutlined />,
+      label: <NavLink to={HOME_PAGE} style={{ color: "inherit" }}>Home</NavLink>,
+    },
+    {
+      key: "about",
+      icon: <InfoCircleOutlined />,
+      label: <NavLink to={ABOUT} style={{ color: "inherit" }}>About</NavLink>,
+    },
+    {
+      key: "profile",
+      icon: <UserOutlined />,
+      label: <NavLink to={profileLink} style={{ color: "inherit" }}>Profile</NavLink>,
+    },
+  ];
+
   return (
+    <Header
+      style={{
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "#001529",
+      }}
+    >
+
     <Header style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF", borderBottom: "solid rgba(0, 0, 0, 0.5) 1px",  padding: "0" }}>
       <div style={{ color: "#000", fontSize: "20px", marginRight: "auto", marginLeft: "32px" }}>
         <NavLink to={HOME_PAGE} style={{ color: 'inherit' }}>Áva</NavLink>
@@ -25,6 +75,7 @@ const HeaderComponent = () => {
           <NavLink to={PARTNERS} style={{ color: 'inherit' }}>Our Partners</NavLink>
         </Menu.Item>
       </Menu>
+
     </Header>
   );
 };
