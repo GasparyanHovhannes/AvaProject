@@ -1,0 +1,56 @@
+.subscription-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.subscription-card {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.benefits-section {
+  margin-top: 25px;
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.benefit-icon {
+  font-size: 24px;
+  color: #e8752a;
+  margin-top: 4px;
+}
+
+.benefit-text {
+  margin: 4px 0 0;
+}
+
+.subscription-options {
+  margin: 20px 0 30px;
+}
+
+.payment-form .row-group {
+  display: flex;
+  gap: 20px;
+}
+
+.secure-text {
+  font-size: 13px;
+  color: white;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.subscribe-btn {
+  width: 100%;
+  background-color: #e8752a;
+  border-color: #e8752a;
+  color: white;
+}

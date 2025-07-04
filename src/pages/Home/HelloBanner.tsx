@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Typography } from 'antd';
 import './HelloBanner.css';
+import { NavLink } from 'react-router-dom';
+import { SUBSCRIPTION } from '../../routes/paths'; // Adjust the import path as necessary
 
 const { Title, Paragraph } = Typography;
 
@@ -14,8 +16,10 @@ const HelloBanner: React.FC = () => {
         <Paragraph style={{ color: 'white', maxWidth: 400 }}>
           Discover the perfect hair care routine tailored to your unique needs.
         </Paragraph>
-        <Button type="primary" size="large">
-          Take the Quiz
+        <Button size="large" style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }}>
+          <NavLink to={SUBSCRIPTION} style={{ color: 'white', textDecoration: 'none' }}>
+            Take the Quiz
+          </NavLink>
         </Button>
       </div>
     </div>
