@@ -1,9 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
-import { HOME_PAGE, ABOUT, PROFILE } from "./paths";
+import { HOME_PAGE, ABOUT, PROFILE, PARTNERS, SHOP } from "./paths";
 import Home from "../pages/Home/Home";
+import Shop from "../pages/Shop/Shop";
 import About from "../pages/About/About";
 import Profile from "../pages/Profile/Profile";
+import Partners from "../pages/Partners/Partners";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +29,22 @@ export const router = createBrowserRouter([
         element: (
             <Layout>
                 <Profile />
+            </Layout>
+        )
+    },
+    {
+        path: PARTNERS,
+        element: (
+            <Layout>
+                <Partners />
+            </Layout>
+        )
+    },
+    {
+        path: SHOP,
+        element: (
+            <Layout>
+                <Shop />
             </Layout>
         )
     }

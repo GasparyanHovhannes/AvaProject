@@ -1,0 +1,13 @@
+@font-face {
+  font-family: lexend;
+  src: url("../../font/Lexend-Medium.ttf");
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+.padding_div {
+    padding-left: 150px;
+    padding-right: 150px;
+}

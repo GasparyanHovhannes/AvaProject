@@ -1,0 +1,9 @@
+const Partners = () => {
+  return (
+    <div>
+      <h1>Welcome to the Partners Page</h1>
+    </div>
+  );
+};
+
+export default Partners;

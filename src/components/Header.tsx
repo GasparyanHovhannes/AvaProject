@@ -1,7 +1,7 @@
 import { Layout, Menu } from "antd";
 import { HomeOutlined, InfoCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-import { HOME_PAGE, ABOUT, PROFILE  } from "../routes/paths";
+import { HOME_PAGE, PARTNERS, ABOUT, PROFILE, SHOP} from "../routes/paths";
 
 const { Header } = Layout;
 
@@ -13,13 +13,16 @@ const HeaderComponent = () => {
       </div>
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<HomeOutlined />} style={{backgroundColor: "white", color: "black"}}>
-          <NavLink to={HOME_PAGE} style={{ color: 'inherit' }}>Ava</NavLink>
+          <NavLink to={PARTNERS} style={{ color: 'inherit' }}>Partners</NavLink>
         </Menu.Item>
         <Menu.Item key="2" icon={<InfoCircleOutlined />} style={{backgroundColor: "white", color: "black"}}>
           <NavLink to={ABOUT} style={{ color: 'inherit' }}>About us</NavLink>
         </Menu.Item>
         <Menu.Item key="3" icon={<UserOutlined />}>
           <NavLink to={PROFILE} style={{ color: 'inherit' }}>Profile</NavLink>
+        </Menu.Item>
+        <Menu.Item key="4" icon={<UserOutlined />}>
+          <NavLink to={SHOP} style={{ color: 'inherit' }}>Shop</NavLink>
         </Menu.Item>
       </Menu>
     </Header>
