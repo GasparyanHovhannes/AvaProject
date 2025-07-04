@@ -22,8 +22,10 @@ const app: FirebaseApp = initializeApp({
     authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
     projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
     appId: import.meta.env.VITE_FIREBASE_APPID,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINGSENDERID,
     storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID,
+
 });
 import { getAuth, type Auth } from "firebase/auth";
 const analytics = getAnalytics(app);
