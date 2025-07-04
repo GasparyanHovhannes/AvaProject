@@ -1,0 +1,31 @@
+.partners-section {
+  padding: 40px;
+  width: 70%;
+  margin: auto;
+}
+.partners-title {
+  color: #1b120e;
+  font-weight: 800;
+  margin-bottom: 8px;
+  align-items: center;
+  text-align: center;
+}
+.partners-sub {
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #1b120e;
+}
+.partner-card img {
+    margin: auto;
+  margin-top: 50px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.partners-footer {
+  margin-top: 32px;
+  text-align: center;
+  color: #1b120e;
+}

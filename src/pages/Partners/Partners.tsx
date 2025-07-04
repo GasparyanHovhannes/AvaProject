@@ -1,7 +1,10 @@
+import PartnersSection from "./PartnersSection.tsx";
+import './PartnersSection.css'
+
 const Partners = () => {
   return (
     <div>
-      <h1>Welcome to the Partners Page</h1>
+      <PartnersSection />
     </div>
   );
 };

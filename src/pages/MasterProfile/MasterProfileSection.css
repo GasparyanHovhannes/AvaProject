@@ -1,0 +1,26 @@
+.profile-container {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background-color: #fdfdfd;
+}
+
+.avatar-section {
+  margin-bottom: 20px;
+}
+
+.username {
+  margin: 10px 0 0;
+  font-weight: 600;
+}
+
+.section-title {
+  text-align: left;
+  margin: 20px auto 10px;
+  max-width: 600px;
+  font-weight: 700;
+}
+
+.custom-divider {
+  max-width: 600px;
+  margin: 30px auto 20px;
+}
