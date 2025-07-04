@@ -1,0 +1,37 @@
+.customer-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+.customer-title {
+  color: #1b120e;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+.tips-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+.tips-title {
+  color: #1b120e;
+  font-weight: 800;
+  margin-bottom: 24px;
+      margin: auto;
+    margin-top: 50px;
+}
+.tip-card img {
+  height: 160px;
+  object-fit: cover;
+}
+.tip-card {
+  background-color: #fcf9f8;
+  border-color: #e7d7d0;
+  height: 100%;
+  padding: 20px;
+}

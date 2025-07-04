@@ -1,0 +1,47 @@
+.journey-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  text-align: center;
+  margin: auto;
+}
+
+.journey-content {
+  text-align: center;
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+
+.journey-heading {
+  color: #1b120e;
+  font-weight: 800;
+}
+
+.journey-description {
+  color: #1b120e;
+}
+
+.journey-card {
+  background-color: #fcf9f8;
+  border-color: #e7d7d0;
+  height: 100%;
+  padding: 20px;
+}
+
+.journey-icon {
+  font-size: 24px;
+  color: #1b120e;
+}
+
+.journey-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1b120e;
+}
+
+.journey-text {
+  font-size: 14px;
+  color: #97674e;
+}

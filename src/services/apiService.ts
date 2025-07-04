@@ -17,14 +17,15 @@ import {
 } from "firebase/firestore";
 
 const app: FirebaseApp = initializeApp({
-  apiKey: "AIzaSyC5wQtrok3fmM_ox1i3W0D5giyJ-RxY9YY",
-  databaseURL: "https://avaproject-a38c3-default-rtdb.firebaseio.com",
-  authDomain: "avaproject-a38c3.firebaseapp.com",
-  projectId: "avaproject-a38c3",
-  storageBucket: "avaproject-a38c3.firebasestorage.app",
-  messagingSenderId: "351198233075",
-  appId: "1:351198233075:web:72f4101f6de891e0ba5286",
-  measurementId: "G-36WD6K2P99"
+    apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASEURL,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
+    appId: import.meta.env.VITE_FIREBASE_APPID,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINGSENDERID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID,
+
 });
 import { getAuth, type Auth } from "firebase/auth";
 const analytics = getAnalytics(app);
