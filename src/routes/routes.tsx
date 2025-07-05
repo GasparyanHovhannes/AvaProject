@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
 
-import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, QUIZ, APPOINTMENT } from "./paths";
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, QUIZ, APPOINTMENT, HAIR_CARE } from "./paths";
 
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
@@ -91,6 +91,13 @@ export const router = createBrowserRouter([
     ),
     },
     {
+        path: PROFILE,
+        element: (
+        <Layout>
+            <Profile />
+        </Layout>
+    )},
+        {
 
     path: APPOINMENT,
     element: (
@@ -99,11 +106,12 @@ export const router = createBrowserRouter([
       </Layout>
     ),
     },
-        {
-        path: PROFILE,
-        element: (
-        <Layout>
-            <Profile />
-        </Layout>
-    )}
+    {
+        path: HAIR_CARE,
+        element:(
+            <Layout>
+                <div>Hair Care Section</div>
+            </Layout>
+        )    
+    }
 ])

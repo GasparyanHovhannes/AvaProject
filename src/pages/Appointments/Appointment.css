@@ -1,4 +1,14 @@
 .consultation-container {
+
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+}
+
+.doctor-card {
+  margin-bottom: 2rem;
+
   padding: 2rem;
   background: #fff;
   margin: auto;
@@ -18,6 +28,7 @@
 .doctor-card {
   width: 300px;
   flex-shrink: 0;
+
 }
 
 .doctor-header {
@@ -63,3 +74,4 @@
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
+

@@ -2,7 +2,9 @@ import "./Login.css";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input, Form, message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SIGNUP, PROFILE, DOCTOR_PAGE, MASTER_PROFILE } from "../../routes/paths";
+
+import { SIGNUP, PROFILE, MASTER_PROFILE } from "../../routes/paths";
+
 import { fetchData } from "../../services/apiService";
 import { setPatient, type Patient } from "../../features/patientSlice";
 import { type Doctor } from "../../features/doctorSlice";

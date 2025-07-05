@@ -6,6 +6,7 @@ import REVIEW1 from '..//..//assets//review1.png';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { clearUser, selectUserData } from '../../features/userSlice';
 import { type Appointment } from '../../features/appointmentsSlice';
@@ -19,6 +20,7 @@ const MasterProfileSection: React.FC = () => {
   const navigate = useNavigate();
   const master = useAppSelector(selectUserData);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+
 
   const handleLogout = async () => {
     try {
@@ -65,8 +67,10 @@ const MasterProfileSection: React.FC = () => {
           ))
         )}
       </div>
+
     </div>
   );
 };
+
 
 export default MasterProfileSection;
