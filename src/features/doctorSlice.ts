@@ -11,6 +11,7 @@ export interface Doctor {
   gender?: string;
   yearsOfExperience?: number;
   unavailable?: Timestamp | Timestamp[];
+  type?: string;
 }
 
 interface InitialState {
@@ -84,5 +85,6 @@ const doctorSlice = createAppSlice({
 
 export const { selectDoctorStatus, selectDoctorError, selectDoctors } = doctorSlice.selectors;
 export const { addDoctor, addMedication } = doctorSlice.actions;
+export { doctorSlice };
 export default doctorSlice;
 
