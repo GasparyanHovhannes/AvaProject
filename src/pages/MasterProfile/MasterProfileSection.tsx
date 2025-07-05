@@ -55,7 +55,6 @@ const MasterProfileSection: React.FC = () => {
       >
         Chats
       </Button>
-
       <Button className="log-out-btn" onClick={handleLogout}>
         Log Out
       </Button>

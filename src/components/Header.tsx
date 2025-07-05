@@ -14,8 +14,8 @@ import {
   PROFILE,
   LOGIN,
   PARTNERS,
-  SHOP,
-  MASTER_PROFILE
+  MASTER_PROFILE,
+  SHOP
 } from "../routes/paths";
 import { useAppSelector } from "../app/hooks";
 import {

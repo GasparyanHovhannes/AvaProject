@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Typography } from 'antd';
 import './HelloBanner.css';
 import { NavLink } from 'react-router-dom';
-import { QUIZ } from '../../routes/paths'; // Adjust the import path as necessary
+import { QUIZ } from '../../routes/paths'; 
 
 const { Title, Paragraph } = Typography;
 

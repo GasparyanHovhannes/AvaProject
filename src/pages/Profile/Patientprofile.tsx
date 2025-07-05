@@ -83,7 +83,7 @@ const Profile = () => {
       <Divider className="custom-divider" />
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
       <Card
-        className="appointments-card"
+        className="appointments-card
         onClick={() => navigate(subscribed ? APPOINMENT : SUBSCRIPTION)}
         hoverable
         style={{ width: 220 }}
@@ -95,7 +95,7 @@ const Profile = () => {
           />
         }
       >
-        <Title level={5} className="appointments-card">
+        <Title level={5}>
           Appointments
         </Title>
         <Text type="secondary">This is your appointments section.</Text>
