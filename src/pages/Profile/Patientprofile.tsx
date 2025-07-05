@@ -1,13 +1,19 @@
+import "./Patientpofile.css"
 import { Button } from "antd";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { clearUser } from "../../features/userSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { clearUser, selectUserData } from "../../features/userSlice";
+import {Avatar, Typography, Divider, Card} from "antd";
+import PatientImage from "../../assets/review2.png"
+
+const { Title, Text } = Typography;
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const user = useAppSelector(selectUserData);
 
   const handleLogout = async () => {
     try {
@@ -20,11 +26,40 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile Page</h1>
-      <Button type="primary" danger onClick={handleLogout}>
+      <div className="profile-info">
+        <Avatar className="profile-avatar"
+          size={96}
+          src={PatientImage}
+        />
+        <Title level={4} className="username">
+          {user?.name
+            ? `${user.name}`
+            : "No name available"}
+        </Title>
+        <Title level={4}>
+          {user?.email
+            ? `${user.email}`
+            : "No name available"}
+        </Title>
+      </div>
+      <Button onClick={handleLogout} className="profile-btn">
         Logout
       </Button>
+      <Divider className="custom-divider" />
+      <Card>
+        <Title level={5} className="shop-card">Shop</Title>
+        <Text type="secondary">This is your personal information section.</Text>
+      </Card>
+      <Card>
+        <Title level={5} className="appointments-card">Appointments</Title>
+        <Text type="secondary">This is your appointments section.</Text>
+      </Card>
+      <Card>
+        <Title level={5} className="haircare-card">Hair Care</Title>
+        <Text type="secondary">This is your settings section.</Text>
+      </Card>
     </div>
   );
 };

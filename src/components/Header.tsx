@@ -95,7 +95,6 @@ import {
   ABOUT,
   PROFILE,
   LOGIN,
-  DOCTOR_PAGE,
   PARTNERS,
   MASTER_PROFILE,
   SHOP
@@ -119,7 +118,7 @@ const HeaderComponent = () => {
   const isLoggedIn = Boolean(userData && userStatus);
   const profileLink =
     isLoggedIn && userRole === "doctor"
-      ? DOCTOR_PAGE
+      ? MASTER_PROFILE
       : isLoggedIn
       ? PROFILE
       : LOGIN;

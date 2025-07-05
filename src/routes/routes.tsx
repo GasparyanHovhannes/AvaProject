@@ -77,4 +77,11 @@ export const router = createBrowserRouter([
       </Layout>
     ),
     },
+    {
+        path: PROFILE,
+        element: (
+        <Layout>
+            <Profile />
+        </Layout>
+    )}
 ])

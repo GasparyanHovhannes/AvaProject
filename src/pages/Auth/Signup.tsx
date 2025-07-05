@@ -1,6 +1,6 @@
 import "./SignUp.css";
 import type { FormProps } from "antd";
-import { Button, Form, Input, Select, DatePicker, Card, Space } from "antd";
+import { Button, Form, Input, Select, Card, Space } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import { LOGIN } from "../../routes/paths";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -108,17 +108,17 @@ const Signup = () => {
                 title="Sign up as Patient"
                 hoverable
                 onClick={() => setSelectedRole("patient")}
-                style={{ width: 250, cursor: "pointer" }}
+                style={{ width: 250, cursor: "pointer", textAlign: "center"  }}
               >
                 Click here if you're a new patient.
               </Card>
               <Card
-                title="Sign up as Doctor"
+                title="Sign up as Master"
                 hoverable
                 onClick={() => setSelectedRole("doctor")}
-                style={{ width: 250, cursor: "pointer" }}
+                style={{ width: 250, cursor: "pointer", textAlign: "center" }}
               >
-                Click here if you're a medical professional.
+                Click here if you're a professional.
               </Card>
             </Space>
           ) : (
