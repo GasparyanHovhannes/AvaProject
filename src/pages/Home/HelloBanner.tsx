@@ -19,7 +19,6 @@ const HelloBanner: React.FC = () => {
         <Button size="large" style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }}>
           <NavLink to={QUIZ} style={{ color: 'white', textDecoration: 'none' }}>
             Take the Quiz
-          </NavLink>
         </Button>
       </div>
     </div>
