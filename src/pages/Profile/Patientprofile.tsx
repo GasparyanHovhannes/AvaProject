@@ -9,7 +9,7 @@ import { clearUser, selectUserData, selectUserSubscriptionStatus } from "../../f
 import {Avatar, Typography, Divider, Card, Modal} from "antd";
 import PatientImage from "../../assets/review2.png"
 import appointmentImage from "../../assets/appointment-card.jpg";
-import { APPOINTMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
+import { APPOINMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
 import shopImage from "../../assets/shop-card.jpg";
 import careImage from "../../assets/haire-care-card.jpg";
 import { useState } from "react";
@@ -70,14 +70,21 @@ const Profile = () => {
           }
         </Title>
       </div>
+      <Button
+        onClick={() => navigate("/chats")}
+        className="profile-btn"
+        style={{ marginRight: 12}}
+      >
+        Chats
+      </Button>
       <Button onClick={handleLogout} className="profile-btn">
         Logout
       </Button>
       <Divider className="custom-divider" />
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
       <Card
-        className="appointments-card"
-        onClick={() => navigate(subscribed ? APPOINTMENT : SUBSCRIPTION)}
+        className="appointments-card
+        onClick={() => navigate(subscribed ? APPOINMENT : SUBSCRIPTION)}
         hoverable
         style={{ width: 220 }}
         cover={

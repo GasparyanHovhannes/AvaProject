@@ -17,12 +17,16 @@ import './Appointment.css';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUserData, selectUserRole } from '../../features/userSlice';
 import {
+  db,
   getAllDoctors,
   getAppointmentsForDoctor,
   setAppointment,
 } from '../../services/apiService';
 import type { Doctor } from '../../features/doctorSlice';
 import REVIEW1 from '..\\..\\assets\\review1.png';
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+
 
 
 const { Title, Text } = Typography;
@@ -34,7 +38,7 @@ const Appointment = () => {
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [unavailableDates, setUnavailableDates] = useState<Date[]>([]);
 
-
+  const navigate = useNavigate();
   const master = useAppSelector(selectUserData);
   const role = useAppSelector(selectUserRole);
   const dispatch = useAppDispatch();
@@ -129,6 +133,35 @@ const Appointment = () => {
                   onClick={() => showModal(doctor)}
                 >
                   Book an appointment
+                </Button>
+                <Button
+                  className="chat-btn"
+                  style={{ marginLeft: 8, marginTop: 8 }}
+                  onClick={async () => {
+                    // Используем email доктора для doctor_id
+                    const userId = master?.email ?? 'Anonymous';
+                    const doctorEmail = doctor.email;
+                    // 1. Проверить, есть ли уже чат
+                    const q = query(
+                      collection(db, "chats"),
+                      where("user_id", "==", userId),
+                      where("doctor_id", "==", doctorEmail)
+                    );
+                    const snap = await getDocs(q);
+                    if (snap.empty) {
+                      // 2. Если нет — создать чат
+                      await addDoc(collection(db, "chats"), {
+                        user_id: userId,
+                        doctor_id: doctorEmail,
+                        created: new Date()
+                      });
+                    }
+                    // 3. Перейти на страницу чатов
+                    navigate("/chats");
+                  }}
+                  type="default"
+                >
+                  Chat with
                 </Button>
               </div>
             </div>

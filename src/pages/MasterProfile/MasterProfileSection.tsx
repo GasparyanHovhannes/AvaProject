@@ -48,6 +48,13 @@ const MasterProfileSection: React.FC = () => {
         <Title level={4}>{master?.email ?? "No email available"}</Title>
       </div>
 
+      <Button
+        onClick={() => navigate("/chats")}
+        className="profile-btn"
+        style={{ marginRight: 12}}
+      >
+        Chats
+      </Button>
       <Button className="log-out-btn" onClick={handleLogout}>
         Log Out
       </Button>
