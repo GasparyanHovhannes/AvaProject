@@ -19,7 +19,7 @@ const initialState: UserState = {
   role: null,
   token: null,
   isEmailVerified: false,
-  subscribed: false
+  subscribed: false,
   type: "null",
   email: undefined
 };
@@ -64,10 +64,6 @@ const userSlice = createAppSlice({
     }),
   }),
   selectors: {
-    selectUserData: state => state.data,
-    selectUserRole: state => state.role,
-    selectUserToken: state => state.token,
-    selectUserEmailStatus: state => state.isEmailVerified,
     selectUserSubscriptionStatus: state => state.subscribed,
     selectUserData: (state) => state.data,
     selectUserRole: (state) => state.role,

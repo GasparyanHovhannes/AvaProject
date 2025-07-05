@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Typography } from 'antd';
 import './HelloBanner.css';
 import { NavLink } from 'react-router-dom';
-import { QUIZ } from '../../routes/paths'; // Adjust the import path as necessary
+import { QUIZ } from '../../routes/paths'; 
 
 const { Title, Paragraph } = Typography;
 
@@ -19,6 +19,7 @@ const HelloBanner: React.FC = () => {
         <Button size="large" style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }}>
           <NavLink to={QUIZ} style={{ color: 'white', textDecoration: 'none' }}>
             Take the Quiz
+          </NavLink>
         </Button>
       </div>
     </div>

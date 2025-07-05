@@ -13,7 +13,7 @@ import MasterProfileSection from "../pages/MasterProfile/MasterProfile";
 import Partners from "../pages/Partners/Partners";
 import Subscription from "../pages/SubscriptionSave/Subscription";
 import Appointment from "../pages/Appointments/Appointment";
-import Quiz from "../pages/Quiz/quiz";
+import Quiz from "../pages/Quiz/Quiz";
 
 
 
@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
     )},
         {
 
-    path: APPOINMENT,
+    path: APPOINTMENT,
     element: (
       <Layout>
         <Appointment />
