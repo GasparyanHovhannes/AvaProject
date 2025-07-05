@@ -60,7 +60,8 @@ export const router = createBrowserRouter([
                 <Shop />
             </Layout>
         )
-    }
+    },
+    {
      path: LOGIN,
         element: (
         <Layout>

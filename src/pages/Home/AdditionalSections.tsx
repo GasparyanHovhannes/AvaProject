@@ -2,9 +2,9 @@ import React from 'react';
 import { Typography, List, Avatar, Rate, Space, Row, Col, Card } from 'antd';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import './AdditionalSections.css';
-import REVIEW1 from 'C:\\Users\\Asus\\AvaProject\\AvaProject\\src\\assets\\review1.png';
-import REVIEW2 from 'C:\\Users\\Asus\\AvaProject\\AvaProject\\src\\assets\\review2.png';  
-import REVIEW3 from 'C:\\Users\\Asus\\AvaProject\\AvaProject\\src\\assets\\review3.png';
+import REVIEW1 from '..\\..\\assets\\review1.png';
+import REVIEW2 from '..\\..\\assets\\review2.png';  
+import REVIEW3 from '..\\..\\assets\\review3.png';
 
 const { Title, Paragraph, Text } = Typography;
 
