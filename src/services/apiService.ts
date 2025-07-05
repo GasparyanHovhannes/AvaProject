@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {type FirebaseApp} from "firebase/app";
+import { type Doctor } from "../features/doctorSlice"; 
+import { type Appointment } from "../features/appointmentsSlice"; 
+
 
 import {
     addDoc,
@@ -13,7 +16,8 @@ import {
     getDoc,
     setDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    Timestamp,
 } from "firebase/firestore";
 
 const app: FirebaseApp = initializeApp({
@@ -31,7 +35,7 @@ const analytics = getAnalytics(app);
 
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
-type CollectionName = "doctor" | "users";
+type CollectionName = "doctor" | "users" | "appointments";
 
 const fetchData = async <T>(collectionName: CollectionName) => {
     const dataCollection = collection(db, collectionName) as CollectionReference<T>;
@@ -52,6 +56,56 @@ const setData = async <T>(collectionName: CollectionName, data: T, docId?: strin
   }
 };
 
+export const setAppointment = async ({
+  doctor,
+  client,
+  date,
+}: {
+  doctor: string;
+  client: string;
+  date: Date;
+}): Promise<void> => {
+  await addDoc(collection(db, 'appointments'), {
+    doctor,
+    client,
+    date: Timestamp.fromDate(date),
+  });
+};
+
+export const getAppointmentsForDoctor = async (doctorEmail: string): Promise<Appointment[]> => {
+  const snapshot = await getDocs(collection(db, "appointments"));
+  const filtered = snapshot.docs
+    .filter(doc => doc.data().doctor === doctorEmail)
+    .map(doc => ({
+      doc_id: doc.id,
+      ...(doc.data() as Omit<Appointment, 'doc_id'>)
+    }));
+
+  return filtered;
+};
+
+
+export const getAllDoctors = async (): Promise<Doctor[]> => {
+  const snapshot = await getDocs(collection(db, 'doctor'));
+  return snapshot.docs.map(docSnap => {
+    const raw = docSnap.data() as any;
+    const field = raw.unavailable;
+    const arr: Timestamp[] = [];
+    if (field) {
+      if (Array.isArray(field)) arr.push(...field);
+      else arr.push(field);
+    }
+    return {
+      id: docSnap.id,
+      name: raw.name,
+      email: raw.email,
+      gender: raw.gender,
+      yearsOfExperience: raw.yearsOfExperience,
+      image: raw.image,
+      unavailable: arr,
+    };
+  });
+};
 
 const updateData = async <T extends object>(doc_id: string, collectionName: CollectionName, updatedData: T):Promise<void> => {
     const docRef = doc(db, collectionName, doc_id);
@@ -85,3 +139,4 @@ export const fetchDataById = async <T>(
 
 
 export {fetchData, setData, getData, updateData, auth, db }
+

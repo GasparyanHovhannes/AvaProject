@@ -13,7 +13,6 @@ import {
   ABOUT,
   PROFILE,
   LOGIN,
-  DOCTOR_PAGE,
   PARTNERS,
   SHOP
 } from "../routes/paths";
@@ -38,7 +37,7 @@ const HeaderComponent = () => {
   const isLoggedIn = Boolean(userData && userStatus);
   const profileLink =
     isLoggedIn && userRole === "doctor"
-      ? DOCTOR_PAGE
+      ? MASTER_PROFILE
       : isLoggedIn
       ? PROFILE
       : LOGIN;

@@ -1,6 +1,7 @@
 import { setData, updateData } from '../services/apiService.ts';
 import { createAppSlice } from '../app/createAppSlice.ts';
-import { arrayUnion } from 'firebase/firestore';
+import { arrayUnion, Timestamp } from 'firebase/firestore';
+
 
 export interface Doctor {
   id?: string;
@@ -9,6 +10,7 @@ export interface Doctor {
   image?: string;
   gender?: string;
   yearsOfExperience?: number;
+  unavailable?: Timestamp | Timestamp[];
   type?: string;
 }
 
@@ -85,3 +87,4 @@ export const { selectDoctorStatus, selectDoctorError, selectDoctors } = doctorSl
 export const { addDoctor, addMedication } = doctorSlice.actions;
 export { doctorSlice };
 export default doctorSlice;
+
