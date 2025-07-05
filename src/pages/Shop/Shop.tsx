@@ -39,12 +39,21 @@ const Shop = () => {
                   <img
                     alt={product.name}
                     src={imgSrc || ''}
-                    style={{ height: 200, objectFit: 'cover' }}
+                    style={{
+                      width: 200,
+                      height: 200,
+                      objectFit: 'cover',
+                      display: 'block',
+                      margin: '0 auto',
+                      borderRadius: 8
+                    }}
                   />
                 }
               >
                 <Card.Meta
-                  title={product.name}
+                  title={
+                    <span className="product-title">{product.name}</span>
+                  }
                   description={
                     <>
                       <Text strong>Type:</Text> {product.type} <br />
