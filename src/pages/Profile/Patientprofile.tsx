@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
 import { clearUser, selectUserData, selectUserSubscriptionStatus } from "../../features/userSlice";
 import {Avatar, Typography, Divider, Card, Modal} from "antd";
 import PatientImage from "../../assets/review2.png"
@@ -13,12 +14,14 @@ import shopImage from "../../assets/shop-card.jpg";
 import careImage from "../../assets/haire-care-card.jpg";
 import { useState } from "react";
 
+
 const { Title, Text } = Typography;
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectUserData);
+
   const subscribed = useAppSelector(selectUserSubscriptionStatus);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,6 +32,7 @@ const Profile = () => {
   const handleClose = () => {
     setIsModalOpen(false);
   };
+
 
 
   const handleLogout = async () => {
@@ -57,7 +61,13 @@ const Profile = () => {
         <Title level={4}>
           {user?.email
             ? `${user.email}`
-            : "No name available"}
+            : "No email available"}
+        </Title>
+        <Title level={4}>
+          {user?.type
+            ? `hair type = ${user.type}`
+            : "No type available"
+          }
         </Title>
       </div>
       <Button onClick={handleLogout} className="profile-btn">
@@ -132,6 +142,6 @@ const Profile = () => {
   );
 };
 
-export default Profile;
 
+export default Profile;
 

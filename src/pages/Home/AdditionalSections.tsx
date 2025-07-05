@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, List, Avatar, Rate, Space, Row, Col, Card } from 'antd';
+import { Typography, List, Avatar, Rate, Space, Row, Col, Card, Button } from 'antd';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import './AdditionalSections.css';
 import REVIEW1 from '..//..//assets//review1.png';
@@ -74,10 +74,12 @@ export const CustomerStoriesSection: React.FC = () => {
             />
             <Rate disabled defaultValue={5} style={{ fontSize: 16, color: '#ea7d47' }} />
             <Paragraph style={{ marginTop: 8 }}>{item.text}</Paragraph>
-            <Space size="large" style={{ color: '#97674e' }}>
-              <Space size="small"><LikeOutlined /><span>{item.likes}</span></Space>
-              <Space size="small"><DislikeOutlined /><span>{item.dislikes}</span></Space>
-            </Space>
+            <Button>
+              <LikeOutlined /><span>{item.likes}</span>
+              </Button>
+              <Button>
+                <DislikeOutlined /><span>{item.dislikes}</span>
+                </Button>
           </List.Item>
         )}
       />

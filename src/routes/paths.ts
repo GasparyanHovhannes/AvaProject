@@ -6,10 +6,12 @@ export const MASTER_PROFILE = "/master-profile";
 export const PROFILE = "/profile";
 export const PARTNERS = "/partners";
 export const SUBSCRIPTION = "/subscription";
+export const QUIZ = "/quiz";
 export const SHOP = "/shop";
 export const DOCTOR_CALENDAR = "calendar";
 export const DOCTOR_INFO = "/doctor-info/:id";
 export const APPOINMENT = "/appointment";
 export const HAIR_CARE = "/hair-care";
+
 
 

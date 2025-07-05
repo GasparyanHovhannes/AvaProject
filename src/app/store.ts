@@ -1,29 +1,25 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
-import { combineSlices, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import userSlice from "../features/userSlice.ts";
-import patientSlice from "../features/patientSlice.ts";
-import doctorSlice from "../features/doctorSlice.ts";
+import { userSlice } from "../features/userSlice";
+import { patientSlice } from "../features/patientSlice";
+import { doctorSlice } from "../features/doctorSlice";
+import { productsSlice } from "../store/productsSlice";
 
-const rootReducer = combineSlices(
-  doctorSlice,
-  userSlice,
-  patientSlice,
-);
+export const store = configureStore({
+  reducer: {
+    user: userSlice.reducer,
+    patient: patientSlice.reducer,
+    doctor: doctorSlice.reducer,
+    products: productsSlice.reducer,
+  },
+});
 
-export type RootState = ReturnType<typeof rootReducer>;
-export const makeStore = () => {
-  const store = configureStore({
-    reducer: rootReducer,
-  });
-  setupListeners(store.dispatch);
-  return store;
-};
+setupListeners(store.dispatch);
 
-export const store = makeStore();
-
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export type AppStore = typeof store;
-export type AppDispatch = AppStore["dispatch"];
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
   ThunkReturnType,
   RootState,

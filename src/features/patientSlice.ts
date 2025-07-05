@@ -7,6 +7,7 @@ export interface Patient {
     name: string;
     image?: string;
     sub?: boolean;
+    type?: string;
 }
 
 interface InitialState {
@@ -85,5 +86,7 @@ export const {
 } = patientSlice.selectors;
 
 export const { setPatient, addPatient, editPatient } = patientSlice.actions;
+
+export { patientSlice };
 
 export default patientSlice;

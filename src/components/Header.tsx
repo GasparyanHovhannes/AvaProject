@@ -1,102 +1,19 @@
-// import { Layout, Menu } from "antd";
-// import {
-//   HomeOutlined,
-//   InfoCircleOutlined,
-//   UserOutlined,
-//   TeamOutlined,
-// } from "@ant-design/icons";
-// import { NavLink } from "react-router-dom";
-// import { HOME_PAGE, ABOUT, PROFILE, LOGIN, DOCTOR_PAGE, PARTNERS, MASTER_PROFILE, SHOP } from "../routes/paths";
-// import { useAppSelector } from "../app/hooks";
-// import {
-//   selectUserData,
-//   selectUserRole,
-//   selectUserEmailStatus,
-// } from "../features/userSlice";
-// import { useNavigate } from "react-router-dom";
-
-// const { Header } = Layout;
-
-// const HeaderComponent = () => {
-//   const navigate = useNavigate();
-//   const userData = useAppSelector(selectUserData);
-//   const userRole = useAppSelector(selectUserRole);
-//   const userStatus = useAppSelector(selectUserEmailStatus);
-
-//   const isLoggedIn = Boolean(userData && userStatus);
-//   const profileLink =
-//     isLoggedIn && userRole === "doctor"
-//       ? DOCTOR_PAGE
-//       : isLoggedIn
-//       ? PROFILE
-//       : LOGIN;
-
-//   const menuItems = [
-//     {
-//       key: "home",
-//       icon: <HomeOutlined />,
-//       label: <NavLink to={HOME_PAGE} style={{ color: "inherit" }}>Home</NavLink>,
-//     },
-//     {
-//       key: "about",
-//       icon: <InfoCircleOutlined />,
-//       label: <NavLink to={ABOUT} style={{ color: "inherit" }}>About</NavLink>,
-//     },
-//     {
-//       key: "profile",
-//       icon: <UserOutlined />,
-//       label: <NavLink to={profileLink} style={{ color: "inherit" }}>Profile</NavLink>,
-//     },
-//   ];
-
-//   return (
-
-//     <Header style={{ display: "flex", alignItems: "center", backgroundColor: "#FFFFFF", borderBottom: "solid rgba(0, 0, 0, 0.5) 1px", width: "100%", padding: "0" }}>
-
-
-
-//       <div style={{ color: "#000", fontSize: "20px", marginRight: "auto", marginLeft: "32px" }}>
-//         <NavLink to={HOME_PAGE} style={{ color: 'inherit' }}>Áva</NavLink>
-//       </div>
-//       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-//         <Menu.Item key="1" icon={<HomeOutlined />} style={{backgroundColor: "white", color: "black"}}>
-//           <NavLink to={HOME_PAGE} style={{ color: 'inherit' }}>Home</NavLink>
-//         </Menu.Item>
-//         <Menu.Item key="2" icon={<InfoCircleOutlined />} style={{backgroundColor: "white", color: "black"}}>
-//           <NavLink to={ABOUT} style={{ color: 'inherit' }}>About us</NavLink>
-//         </Menu.Item>
-//         <Menu.Item key="3" icon={<UserOutlined />}>
-//           <NavLink to={profileLink} style={{ color: 'inherit' }}>Profile</NavLink>
-//         </Menu.Item>
-//         <Menu.Item key="4" icon={<TeamOutlined />}>
-//           <NavLink to={PARTNERS} style={{ color: 'inherit' }}>Our Partners</NavLink>
-//         </Menu.Item>
-//         <Menu.Item key="4" icon={<UserOutlined />}>
-//           <NavLink to={SHOP} style={{ color: 'inherit' }}>Shop</NavLink>
-//         </Menu.Item>
-//       </Menu>
-
-//     </Header>
-//   );
-// };
-
-// export default HeaderComponent;
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Typography, Drawer, Button } from "antd";
 import {
   HomeOutlined,
   InfoCircleOutlined,
   UserOutlined,
   TeamOutlined,
-  ShoppingOutlined
+  ShoppingOutlined,
+  MenuOutlined
 } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
   HOME_PAGE,
   ABOUT,
   PROFILE,
   LOGIN,
   PARTNERS,
-  MASTER_PROFILE,
   SHOP
 } from "../routes/paths";
 import { useAppSelector } from "../app/hooks";
@@ -105,12 +22,14 @@ import {
   selectUserRole,
   selectUserEmailStatus,
 } from "../features/userSlice";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 const { Header } = Layout;
+const { Text } = Typography;
 
 const HeaderComponent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const userData = useAppSelector(selectUserData);
   const userRole = useAppSelector(selectUserRole);
   const userStatus = useAppSelector(selectUserEmailStatus);
@@ -155,6 +74,20 @@ const HeaderComponent = () => {
     },
   ];
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Определяем, мобильный ли экран
+  const isMobile = window.innerWidth < 768;
+
+  // Для активного пункта меню
+  const getSelectedKey = () => {
+    if (location.pathname.startsWith("/about")) return "about";
+    if (location.pathname.startsWith("/profile")) return "profile";
+    if (location.pathname.startsWith("/partners")) return "partners";
+    if (location.pathname.startsWith("/shop")) return "shop";
+    return "home";
+  };
+
   return (
     <Header
       style={{
@@ -164,28 +97,59 @@ const HeaderComponent = () => {
         borderBottom: "solid rgba(0, 0, 0, 0.5) 1px",
         width: "100%",
         padding: "0",
+        zIndex: 10,
       }}
     >
       <div
         style={{
+          display: "flex",
+          alignItems: "center",
           color: "#000",
           fontSize: "20px",
           marginRight: "auto",
           marginLeft: "32px",
+          fontWeight: 700,
+          letterSpacing: 2,
         }}
       >
-        <NavLink to={HOME_PAGE} style={{ color: "inherit" }}>
-          Áva
+        <NavLink to={HOME_PAGE} style={{ color: "inherit", textDecoration: "none", width: "50px" }}>
+          <Text strong style={{ fontSize: 24, color: "#1b120e" }}>Áva</Text>
         </NavLink>
       </div>
 
-      <Menu
-        theme="light"
-        mode="horizontal"
-        defaultSelectedKeys={["home"]}
-        items={menuItems}
-        style={{ backgroundColor: "white", color: "black" }}
-      />
+      {/* Бургер-меню для мобильных */}
+      {isMobile ? (
+        <>
+          <Button
+            type="text"
+            icon={<MenuOutlined style={{ fontSize: 24 }} />}
+            onClick={() => setDrawerOpen(true)}
+            style={{ marginRight: 16 }}
+          />
+          <Drawer
+            title="Menu"
+            placement="right"
+            onClose={() => setDrawerOpen(false)}
+            open={drawerOpen}
+            bodyStyle={{ padding: 0 }}
+          >
+            <Menu
+              mode="vertical"
+              selectedKeys={[getSelectedKey()]}
+              items={menuItems}
+              onClick={() => setDrawerOpen(false)}
+            />
+          </Drawer>
+        </>
+      ) : (
+        <Menu
+          theme="light"
+          mode="horizontal"
+          selectedKeys={[getSelectedKey()]}
+          items={menuItems}
+          style={{ backgroundColor: "white", color: "black", minWidth: 400 }}
+        />
+      )}
     </Header>
   );
 };

@@ -1,64 +1,36 @@
-@font-face {
-  font-family: lexend;
-  src: url("../../font/Lexend-Medium.ttf");
+.shop-section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  text-align: center;
+  margin: auto;
 }
 
-h1, h2, h3, h4, p {
-    margin: 0;
+.shop-content {
+  text-align: center;
+  max-width: 720px;
+  margin-bottom: 32px;
 }
 
-.padding_div {
-    padding-left: 150px;
-    padding-right: 150px;
+.shop-heading {
+  color: #1b120e;
+  font-weight: 800;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 24px;
+.shop-description {
+  color: #1b120e;
 }
 
-.product_item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    width: 200px;
-    cursor: pointer;
+.ant-card {
+  margin-bottom: 24px;
 }
 
-.title {
-    font-family: lexend;
-    font-size: 32px;
-    color: black;
-    margin-bottom: 50px;
-}
-
-.cover_photo {
-    width: 100%;
-    object-fit: cover; 
-    border-radius: 8px;
-}
-
-.item_title {
-  font-family: lexend;
-  font-size: 20px;
-  color: #1C120D;
-  margin: 12px 0 8px 0;
-  word-break: break-word;
-  overflow: hidden;
-  white-space: normal;
-  max-width: 100%;
+.product-title {
   display: block;
-}
-
-.item_description {
-  font-family: lexend;
-  font-size: 20px;
-  color: #1C120D;
-  margin: 12px 0 8px 0;
-  word-break: break-word;
-  overflow: hidden;
-  white-space: normal;
   max-width: 100%;
-  display: block;
+  word-break: break-word;
+  white-space: normal;
+  margin: 0 auto;
 }
