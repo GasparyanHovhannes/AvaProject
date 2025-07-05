@@ -9,6 +9,7 @@ export interface Doctor {
   image?: string;
   gender?: string;
   yearsOfExperience?: number;
+  type?: string;
 }
 
 interface InitialState {

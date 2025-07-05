@@ -15,8 +15,9 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { setEmailVerified } from "../../features/userSlice";
+import { setUser, setEmailVerified } from "../../features/userSlice";
 import loginImage from "../../assets/login-image.jpg"
+
 
 
 const { Option } = Select;
@@ -61,6 +62,7 @@ const Signup = () => {
 
       await sendEmailVerification(firebaseUser);
       dispatch(setEmailVerified(false));
+    
 
       if (selectedRole === "patient") {
         const newPatient = {
@@ -69,6 +71,13 @@ const Signup = () => {
           email: values.email,
           sub: true,
         };
+
+        // Сохраняем пользователя в Redux
+        dispatch(setUser({
+          data: newPatient,
+          role: "patient",
+          token: uid,
+        }));
 
         await dispatch(addPatient(newPatient));
       }
@@ -81,6 +90,12 @@ const Signup = () => {
           gender: values.gender,
           yearsOfExperience: parseInt(values.yearsOfExperience),
         };
+
+        dispatch(setUser({
+          data: newDoctor,
+          role: "doctor",
+          token: uid,
+        }));
 
         await dispatch(addDoctor(newDoctor));
       }

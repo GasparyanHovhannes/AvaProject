@@ -7,6 +7,7 @@ export interface Patient {
     name: string;
     image?: string;
     sub?: boolean;
+    type?: string;
 }
 
 interface InitialState {
