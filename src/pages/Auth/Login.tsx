@@ -2,7 +2,7 @@ import "./Login.css";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input, Form, message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SIGNUP, PROFILE, DOCTOR_PAGE } from "../../routes/paths";
+import { SIGNUP, PROFILE, DOCTOR_PAGE, MASTER_PROFILE } from "../../routes/paths";
 import { fetchData } from "../../services/apiService";
 import { setPatient, type Patient } from "../../features/patientSlice";
 import { type Doctor } from "../../features/doctorSlice";
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
       if (matchedDoctor) {
         dispatch(setUser({ data: matchedDoctor, role: "doctor", token }));
         dispatch(setEmailVerified(true));
-        navigate(DOCTOR_PAGE);
+        navigate(MASTER_PROFILE);
       } else if (matchedPatient) {
         dispatch(setUser({ data: matchedPatient, role: "patient", token }));
         dispatch(setPatient(matchedPatient));

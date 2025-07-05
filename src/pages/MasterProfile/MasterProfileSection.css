@@ -24,3 +24,12 @@
   max-width: 600px;
   margin: 30px auto 20px;
 }
+
+.log-out-btn {
+  width: 10%;
+  margin:auto;
+  margin-top: 10px;
+  background-color: #e8752a;
+  border-color: #e8752a;
+  color: white;
+}

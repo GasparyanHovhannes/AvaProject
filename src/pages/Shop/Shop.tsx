@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchProducts } from '../../store/productsSlice';
 import "./Shop.css";
 
-const images = import.meta.glob('../../assets/*.jpg', { eager: true, as: 'url' });
+const images = import.meta.glob('../../assets/*.jpg', { eager: true, query: '?url' });
 
 const Shop = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +20,6 @@ const Shop = () => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className="container">
         {items.map(product => {
-          // product.image должен содержать имя файла, например leaf.svg
           const imgSrc = images[`../../assets/${product.image}`] as string | undefined;
           return (
             <div key={product.doc_id} className='product_item'>
