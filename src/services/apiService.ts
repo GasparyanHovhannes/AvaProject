@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {type FirebaseApp} from "firebase/app";
-import { type Doctor } from "../features/doctorSlice"; // Adjust the import path as necessary
-import { type Appointment } from "../features/appointmentsSlice"; // Adjust the import path as necessary
+import { type Doctor } from "../features/doctorSlice"; 
+import { type Appointment } from "../features/appointmentsSlice"; 
 
 
 import {
@@ -56,19 +56,6 @@ const setData = async <T>(collectionName: CollectionName, data: T, docId?: strin
   }
 };
 
-
-export const getAppointmentsForClient = async (clientName: string): Promise<Appointment[]> => {
-  const snapshot = await getDocs(collection(db, "appointments"));
-  const filtered = snapshot.docs
-    .filter(doc => doc.data().client === clientName)
-    .map(doc => ({
-      doc_id: doc.id,
-      ...(doc.data() as Omit<Appointment, 'doc_id'>)
-    }));
-
-  return filtered;
-};
-
 export const setAppointment = async ({
   doctor,
   client,
@@ -78,12 +65,11 @@ export const setAppointment = async ({
   client: string;
   date: Date;
 }): Promise<void> => {
-  const appointment = {
+  await addDoc(collection(db, 'appointments'), {
     doctor,
     client,
     date: Timestamp.fromDate(date),
-  };
-  await addDoc(collection(db, "appointments"), appointment);
+  });
 };
 
 export const getAppointmentsForDoctor = async (doctorEmail: string): Promise<Appointment[]> => {
@@ -101,11 +87,24 @@ export const getAppointmentsForDoctor = async (doctorEmail: string): Promise<App
 
 export const getAllDoctors = async (): Promise<Doctor[]> => {
   const snapshot = await getDocs(collection(db, 'doctor'));
-  const doctors = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data(),
-  })) as Doctor[];
-  return doctors;
+  return snapshot.docs.map(docSnap => {
+    const raw = docSnap.data() as any;
+    const field = raw.unavailable;
+    const arr: Timestamp[] = [];
+    if (field) {
+      if (Array.isArray(field)) arr.push(...field);
+      else arr.push(field);
+    }
+    return {
+      id: docSnap.id,
+      name: raw.name,
+      email: raw.email,
+      gender: raw.gender,
+      yearsOfExperience: raw.yearsOfExperience,
+      image: raw.image,
+      unavailable: arr,
+    };
+  });
 };
 
 const updateData = async <T extends object>(doc_id: string, collectionName: CollectionName, updatedData: T):Promise<void> => {

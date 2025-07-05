@@ -17,9 +17,9 @@ const HelloBanner: React.FC = () => {
           Discover the perfect hair care routine tailored to your unique needs.
         </Paragraph>
         <Button size="large" style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }}>
-          <NavLink to={APPOINMENT} style={{ color: 'white', textDecoration: 'none' }}>
+          {/* <NavLink to={APPOINMENT} style={{ color: 'white', textDecoration: 'none' }}> */}
             Take the Quiz
-          </NavLink>
+          {/* </NavLink> */}
         </Button>
       </div>
     </div>
