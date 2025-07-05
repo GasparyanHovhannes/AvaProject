@@ -1,18 +1,30 @@
 .consultation-container {
-  max-width: 900px;
-  margin: auto;
   padding: 2rem;
   background: #fff;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: auto;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .doctor-card {
-  margin-bottom: 2rem;
+  width: 300px;
+  flex-shrink: 0;
 }
 
 .doctor-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  margin:auto;
   margin-bottom: 1rem;
 }
 

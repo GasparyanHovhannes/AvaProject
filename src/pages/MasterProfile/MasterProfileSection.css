@@ -1,5 +1,8 @@
 .profile-container {
   text-align: center;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
   padding: 40px 20px 20px;
   background-color: #fdfdfd;
 }
@@ -14,7 +17,7 @@
 }
 
 .section-title {
-  text-align: left;
+  margin:auto;
   margin: 20px auto 10px;
   max-width: 600px;
   font-weight: 700;
@@ -32,4 +35,22 @@
   background-color: #e8752a;
   border-color: #e8752a;
   color: white;
+}
+.appointments-section {
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointment-card {
+  margin: auto;
+  width: 20%;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fafafa;
+  color:black;
 }

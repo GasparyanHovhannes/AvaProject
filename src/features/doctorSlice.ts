@@ -11,6 +11,8 @@ export interface Doctor {
   yearsOfExperience?: number;
 }
 
+
+
 interface InitialState {
   data: Doctor[];
   status: string;
@@ -83,3 +85,4 @@ const doctorSlice = createAppSlice({
 export const { selectDoctorStatus, selectDoctorError, selectDoctors } = doctorSlice.selectors;
 export const { addDoctor, addMedication } = doctorSlice.actions;
 export default doctorSlice;
+

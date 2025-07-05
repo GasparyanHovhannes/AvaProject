@@ -11,6 +11,7 @@ import REVIEW1 from '..\\..\\assets\\review1.png';
 import { setAppointment } from '../../services/apiService';
 import { collection, getDocs, doc, setDoc, addDoc } from 'firebase/firestore';
 import { db } from '../../services/apiService'; 
+import type { Appointment } from '../../features/appointmentsSlice';
 
 
 const { Title, Text } = Typography;
@@ -20,6 +21,7 @@ const Appointment = () => {
   const [selectedDoctor, setSelectedDoctor] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [doctors, setDoctors] = useState<Doctor[]>([]);
+   // Adjust type as needed
 
   const master = useAppSelector(selectUserData);
   const role = useAppSelector(selectUserRole);
@@ -31,8 +33,8 @@ const Appointment = () => {
       .catch(err => console.error("Error fetching doctors:", err));
   }, []);
 
-  const showModal = (doctorName: string) => {
-    setSelectedDoctor(doctorName);
+  const showModal = (doctorEmail: string) => {
+    setSelectedDoctor(doctorEmail);
     setIsModalOpen(true);
   };
 
@@ -45,8 +47,8 @@ const handleOk = async () => {
   try {
     await setAppointment({
       doctor: selectedDoctor!,
-      client: master?.name ?? "Anonymous",
-      date: selectedDate.toDate(), // Convert Dayjs to JS Date
+      client: master?.email ?? "Anonymous",
+      date: selectedDate.toDate(), 
     });
 
     message.success(`Appointment booked with ${selectedDoctor} on ${selectedDate.format('YYYY-MM-DD')}`);
@@ -69,8 +71,10 @@ const handleOk = async () => {
   
 
   return (
-    <div className="consultation-container">
-      <Title level={2}>Available Masters</Title>
+  <div className="consultation-container">
+    <Title level={2}>Available Masters</Title>
+
+    <div className="card-wrapper">
       {doctors.map((doctor, index) => (
         <Card key={index} className="doctor-card">
           <Avatar size={64} src={REVIEW1} />
@@ -79,15 +83,18 @@ const handleOk = async () => {
               <Title level={4}>{doctor.name}</Title>
               <Text type="secondary">{doctor.gender || 'Doctor'}</Text>
               <br />
-              <Button className="view-profile-btn" onClick={() => showModal(doctor.name)}>
+              <Button className="view-profile-btn" onClick={() => showModal(doctor.email)}>
                 Book an appointment
               </Button>
             </div>
           </div>
 
           <div className="rating-section">
-            
-            <Rate disabled allowHalf value={doctor.yearsOfExperience ? Math.min(5, doctor.yearsOfExperience / 2) : 4.5} />
+            <Rate
+              disabled
+              allowHalf
+              value={doctor.yearsOfExperience ? Math.min(5, doctor.yearsOfExperience / 2) : 4.5}
+            />
             <Text strong style={{ marginLeft: 8 }}>{doctor.yearsOfExperience ?? '4+'} yrs</Text>
           </div>
 
@@ -98,21 +105,22 @@ const handleOk = async () => {
           </div>
         </Card>
       ))}
-
-      <Modal
-        title={`Book Appointment with ${selectedDoctor}`}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Confirm"
-      >
-        <DatePicker
-          style={{ width: '100%' }}
-          onChange={(date) => setSelectedDate(date)}
-        />
-      </Modal>
     </div>
-  );
+
+    <Modal
+      title={`Book Appointment with ${selectedDoctor}`}
+      open={isModalOpen}
+      onOk={handleOk}
+      onCancel={handleCancel}
+      okText="Confirm"
+    >
+      <DatePicker
+        style={{ width: '100%' }}
+        onChange={(date) => setSelectedDate(date)}
+      />
+    </Modal>
+  </div>
+);
 };
 
 export default Appointment;

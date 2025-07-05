@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {type FirebaseApp} from "firebase/app";
 import { type Doctor } from "../features/doctorSlice"; // Adjust the import path as necessary
+import { type Appointment } from "../features/appointmentsSlice"; // Adjust the import path as necessary
+
 
 import {
     addDoc,
@@ -33,7 +35,7 @@ const analytics = getAnalytics(app);
 
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
-type CollectionName = "doctor" | "users";
+type CollectionName = "doctor" | "users" | "appointments";
 
 const fetchData = async <T>(collectionName: CollectionName) => {
     const dataCollection = collection(db, collectionName) as CollectionReference<T>;
@@ -54,6 +56,19 @@ const setData = async <T>(collectionName: CollectionName, data: T, docId?: strin
   }
 };
 
+
+export const getAppointmentsForClient = async (clientName: string): Promise<Appointment[]> => {
+  const snapshot = await getDocs(collection(db, "appointments"));
+  const filtered = snapshot.docs
+    .filter(doc => doc.data().client === clientName)
+    .map(doc => ({
+      doc_id: doc.id,
+      ...(doc.data() as Omit<Appointment, 'doc_id'>)
+    }));
+
+  return filtered;
+};
+
 export const setAppointment = async ({
   doctor,
   client,
@@ -70,6 +85,19 @@ export const setAppointment = async ({
   };
   await addDoc(collection(db, "appointments"), appointment);
 };
+
+export const getAppointmentsForDoctor = async (doctorEmail: string): Promise<Appointment[]> => {
+  const snapshot = await getDocs(collection(db, "appointments"));
+  const filtered = snapshot.docs
+    .filter(doc => doc.data().doctor === doctorEmail)
+    .map(doc => ({
+      doc_id: doc.id,
+      ...(doc.data() as Omit<Appointment, 'doc_id'>)
+    }));
+
+  return filtered;
+};
+
 
 export const getAllDoctors = async (): Promise<Doctor[]> => {
   const snapshot = await getDocs(collection(db, 'doctor'));
