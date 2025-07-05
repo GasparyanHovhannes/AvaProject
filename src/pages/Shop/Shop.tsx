@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchProducts } from '../../store/productsSlice';
+import { Row, Col, Card, Spin, Alert, Typography } from 'antd';
 import "./Shop.css";
+
+const { Title, Paragraph, Text } = Typography;
 
 const images = import.meta.glob('../../assets/*.jpg', { eager: true, as: 'url' });
 
@@ -14,24 +17,46 @@ const Shop = () => {
   }, [dispatch]);
 
   return (
-    <div className="padding_div">
-      <h1 className="title">Shop Page</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div className="container">
+    <div className="shop-section">
+      <div className="shop-content">
+        <Title level={2} className="shop-heading">
+          Shop Page
+        </Title>
+        <Paragraph className="shop-description">
+          Discover our personalized products, tailored for your unique needs.
+        </Paragraph>
+      </div>
+      {loading && <Spin size="large" style={{ display: 'block', margin: '20px auto' }} />}
+      {error && <Alert message={error} type="error" showIcon style={{ marginBottom: 16 }} />}
+      <Row gutter={[24, 24]} justify="center">
         {items.map(product => {
-          // product.image должен содержать имя файла, например leaf.svg
           const imgSrc = images[`../../assets/${product.image}`] as string | undefined;
           return (
-            <div key={product.doc_id} className='product_item'>
-              <img src={imgSrc || ''} alt={product.name} className="cover_photo" />
-              <h2 className="item_title">{product.name}</h2>
-              <p style={{display:"inline-block"}}><b>Type:</b> {product.type}</p>
-              <p style={{display:"inline-block", marginLeft: "20px"}}><b>Price:</b> {product.price}</p>
-            </div>
+            <Col xs={24} sm={12} md={8} lg={6} key={product.doc_id}>
+              <Card
+                hoverable
+                cover={
+                  <img
+                    alt={product.name}
+                    src={imgSrc || ''}
+                    style={{ height: 200, objectFit: 'cover' }}
+                  />
+                }
+              >
+                <Card.Meta
+                  title={product.name}
+                  description={
+                    <>
+                      <Text strong>Type:</Text> {product.type} <br />
+                      <Text strong>Price:</Text> {product.price}
+                    </>
+                  }
+                />
+              </Card>
+            </Col>
           );
         })}
-      </div>
+      </Row>
     </div>
   );
 };

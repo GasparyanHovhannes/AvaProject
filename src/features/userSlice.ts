@@ -49,10 +49,10 @@ const userSlice = createAppSlice({
     }),
   }),
   selectors: {
-    selectUserData: state => state.data,
-    selectUserRole: state => state.role,
-    selectUserToken: state => state.token,
-    selectUserEmailStatus: state => state.isEmailVerified,
+    selectUserData: (state) => state.data,
+    selectUserRole: (state) => state.role,
+    selectUserToken: (state) => state.token,
+    selectUserEmailStatus: (state) => state.isEmailVerified,
   },
 });
 
@@ -64,5 +64,7 @@ export const {
   selectUserToken,
   selectUserEmailStatus,
 } = userSlice.selectors;
+
+export { userSlice };
 
 export default userSlice;

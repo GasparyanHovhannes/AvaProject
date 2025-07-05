@@ -24,8 +24,8 @@ const { Option } = Select;
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const patientStatus = useAppSelector(selectPatientStatus);
-  const doctorStatus = useAppSelector(selectDoctorStatus);
+  const patientStatus = useAppSelector(state => state.patient.status);
+  const doctorStatus = useAppSelector(state => state.doctor.status);
   const [form] = Form.useForm();
   const [selectedRole, setSelectedRole] = useState<"patient" | "doctor" | null>(null);
 

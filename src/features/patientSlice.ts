@@ -86,4 +86,6 @@ export const {
 
 export const { setPatient, addPatient, editPatient } = patientSlice.actions;
 
+export { patientSlice };
+
 export default patientSlice;
