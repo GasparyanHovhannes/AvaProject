@@ -94,9 +94,14 @@
     padding: 16px 12px;
   }
 
-  .signup-container {
-    border-radius: 0 0 16px 16px;
-    padding: 16px 12px;
+  .signup-container .ant-space {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100%;
+  }
+  .signup-container .ant-card {
+    width: 100% !important;
+    max-width: 280px;
   }
 
   .signup-image {

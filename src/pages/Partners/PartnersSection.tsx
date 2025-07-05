@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography, Row, Col, Card } from 'antd';
 import './PartnersSection.css';
-import salon3 from '..\\..\\assets\\salon3.png'
-import salon2 from '..\\..\\assets\\salon2.jpg'
-import salon1 from '..\\..\\assets\\salon1.jpg'
+import salon3 from '..//..//assets//salon3.png'
+import salon2 from '..//..//assets/salon2.jpg'
+import salon1 from '..//..//assets//salon1.jpg'
 
 const { Title, Paragraph, Text } = Typography;
 

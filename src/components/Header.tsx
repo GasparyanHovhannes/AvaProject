@@ -13,9 +13,9 @@ import {
   ABOUT,
   PROFILE,
   LOGIN,
-  DOCTOR_PAGE,
   PARTNERS,
-  SHOP
+  SHOP,
+  MASTER_PROFILE
 } from "../routes/paths";
 import { useAppSelector } from "../app/hooks";
 import {
@@ -38,7 +38,7 @@ const HeaderComponent = () => {
   const isLoggedIn = Boolean(userData && userStatus);
   const profileLink =
     isLoggedIn && userRole === "doctor"
-      ? DOCTOR_PAGE
+      ? MASTER_PROFILE
       : isLoggedIn
       ? PROFILE
       : LOGIN;

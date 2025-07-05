@@ -6,6 +6,7 @@ import { setUser, clearUser, setEmailVerified } from "../../features/userSlice.t
 import { setPatient, type Patient } from "../../features/patientSlice.ts";
 import { type Doctor } from "../../features/doctorSlice.ts";
 import { Spin } from "antd";
+import { serializeUnavailable } from "../../utils/serializeUnavailable";
 
 type Props = {
   children: ReactNode;
@@ -41,13 +42,17 @@ const AuthLoader = ({ children }: Props) => {
         const matchedDoctor = doctors.find((d) => d.id === user.uid);
 
         if (matchedDoctor) {
-          dispatch(setUser({ data: matchedDoctor, role: "doctor", token}));
-        } else if (matchedPatient) {
-          dispatch(setUser({ data: matchedPatient, role: "patient", token }));
-          dispatch(setPatient(matchedPatient));
-        } else {
-          localStorage.removeItem("authToken");
-          dispatch(clearUser());
+          if (matchedDoctor) {
+            const serializedDoctor = {
+              ...matchedDoctor,
+              unavailableSerialized: serializeUnavailable(matchedDoctor.unavailable),
+            };
+            dispatch(setUser({ data: serializedDoctor, role: "doctor", token }));
+          } else if (matchedPatient) {
+            matchedPatient.unavailable = serializeUnavailable(matchedPatient.unavailable);
+            dispatch(setUser({ data: matchedPatient, role: "patient", token }));
+            dispatch(setPatient(matchedPatient));
+          }
         }
       } catch (error) {
         console.error("Auth error:", error);

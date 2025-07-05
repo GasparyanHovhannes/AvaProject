@@ -1,0 +1,77 @@
+.consultation-container {
+
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+}
+
+.doctor-card {
+  margin-bottom: 2rem;
+
+  padding: 2rem;
+  background: #fff;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: auto;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.doctor-card {
+  width: 300px;
+  flex-shrink: 0;
+
+}
+
+.doctor-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin:auto;
+  margin-bottom: 1rem;
+}
+
+.doctor-info {
+  flex: 1;
+}
+
+.view-profile-btn {
+  margin:auto;
+  margin-top: 10px;
+  background-color: #e8752a;
+  border-color: #e8752a;
+  color: white;
+}
+
+.rating-section {
+  margin-top: 1rem;
+}
+
+.rating-bars {
+  margin-top: 1rem;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comments-section {
+  margin-top: 1rem;
+}
+
+.comment-item {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+

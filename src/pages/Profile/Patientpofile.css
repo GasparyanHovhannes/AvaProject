@@ -26,4 +26,36 @@
     background-color: #e8752a;
     border-color: #e8752a;
     color: #fff;
+
+}
+
+.custom-divider {
+  margin: 40px 0 24px;
+  border-color: #d9d9d9;
+}
+
+.shop-card,
+.appointments-card,
+.haircare-card {
+  margin-bottom: 8px;
+  color: #1890ff;
+  font-weight: 600;
+  width: 400px !important;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 auto;
+}
+
+.shop-card:hover,
+.appointments-card:hover,
+.care-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }

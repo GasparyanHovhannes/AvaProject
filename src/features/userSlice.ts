@@ -10,6 +10,7 @@ interface UserState {
   role: UserRole | null;
   token: string | null;
   isEmailVerified: boolean;
+  subscribed: boolean
   type: string;
 }
 
@@ -18,6 +19,7 @@ const initialState: UserState = {
   role: null,
   token: null,
   isEmailVerified: false,
+  subscribed: false,
   type: "null",
   email: undefined
 };
@@ -40,7 +42,9 @@ const userSlice = createAppSlice({
         state.data = action.payload.data;
         state.role = action.payload.role;
         state.token = action.payload.token;
-        state.type = action.payload.data.type || "undefined"; // <-- добавьте это
+        const userSubscribed = action.payload.data?.sub;
+        state.subscribed = typeof userSubscribed === 'boolean' ? userSubscribed : false;
+        state.type = action.payload.data.type || "undefined"; 
       }
     ),
     clearUser: create.reducer(state => {
@@ -48,31 +52,37 @@ const userSlice = createAppSlice({
       state.role = null;
       state.token = null;
       state.isEmailVerified = false;
-      state.type = "null"; // <-- добавьте это
-      state.email = undefined; // Сброс email при выходе
+      state.subscribed = false;
+      state.type = "null"; 
+      state.email = undefined; 
     }),
     setEmailVerified: create.reducer((state, action: { payload: boolean }) => {
       state.isEmailVerified = action.payload;
     }),
+    setUserSubscriptionStatus: create.reducer((state, action: { payload: boolean }) => {
+      state.subscribed = action.payload;
+    }),
   }),
   selectors: {
-    selectUserData: (state) => state.data,
-    selectUserRole: (state) => state.role,
-    selectUserToken: (state) => state.token,
-    selectUserEmailStatus: (state) => state.isEmailVerified,
+    selectUserData: state => state.data,
+    selectUserRole: state => state.role,
+    selectUserToken: state => state.token,
+    selectUserEmailStatus: state => state.isEmailVerified,
+    selectUserSubscriptionStatus: state => state.subscribed,
     selectUserHairType: (state) => state.data?.type ?? "undefined",
-    selectUserEmail: (state) => state.email, // Добавляем селектор для email
-    selectUserType: (state) => state.type, // Добавляем селектор для type
+    selectUserEmail: (state) => state.email, 
+    selectUserType: (state) => state.type, 
   },
 });
 
-export const { setUser, clearUser, setEmailVerified } = userSlice.actions;
+export const { setUser, clearUser, setEmailVerified, setUserSubscriptionStatus } = userSlice.actions;
 
 export const {
   selectUserData,
   selectUserRole,
   selectUserToken,
   selectUserEmailStatus,
+  selectUserSubscriptionStatus,
 } = userSlice.selectors;
 
 export { userSlice };
