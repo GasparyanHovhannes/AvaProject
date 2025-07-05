@@ -8,6 +8,7 @@ export interface Doctor {
   email: string;
   image?: string;
   gender?: string;
+  sub?: boolean
   yearsOfExperience?: number;
 }
 

@@ -7,11 +7,9 @@ export const PROFILE = "/profile";
 export const PARTNERS = "/partners";
 export const SUBSCRIPTION = "/subscription";
 export const SHOP = "/shop";
-export const BOOK_APPOINTMENT = "/book-appointment";
-export const BOOK_APPOINTMENT_ID = "/book-appointment/:id";
-export const DOCTOR_PAGE = "/doctor";
-export const DOCTOR_APPOINTMENTS = "appointments";
 export const DOCTOR_CALENDAR = "calendar";
 export const DOCTOR_INFO = "/doctor-info/:id";
+export const APPOINMENT = "/appointment";
+export const HAIR_CARE = "/hair-care";
 
 

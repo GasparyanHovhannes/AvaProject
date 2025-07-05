@@ -14,6 +14,8 @@ import {
 } from '@ant-design/icons';
 
 import './SubscriptionForm.css';
+import { NavLink, useNavigate } from 'react-router';
+import { PROFILE } from '../../routes/paths';
 
 const { Title, Paragraph } = Typography;
 
@@ -24,6 +26,7 @@ const SubscriptionForm: React.FC = () => {
   const handleSubmit = (values: any) => {
     console.log('Form Submitted:', values);
   };
+  const navigate = useNavigate();
 
   return (
     <div className="subscription-container">
@@ -117,9 +120,12 @@ const SubscriptionForm: React.FC = () => {
             Your transactions are secure and encrypted.
           </Paragraph>
 
-          <Form.Item>
+          <Form.Item layout='vertical'>
             <Button htmlType="submit" className="subscribe-btn">
               Subscribe Now
+            </Button>
+            <Button className="back-btn" onClick ={() => navigate(PROFILE)}>
+              Back
             </Button>
           </Form.Item>
         </Form>

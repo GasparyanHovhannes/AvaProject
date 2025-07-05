@@ -33,7 +33,7 @@ const Signup = () => {
     console.log("Patient status:", patientStatus, "Doctor status:", doctorStatus);
     if (patientStatus === "succeeded" || doctorStatus === "succeeded") {
       navigate(LOGIN, { state: { signupSuccess: true } });
-      form.resetFields();  // reset form on success
+      form.resetFields();  
     }
   }, [patientStatus, doctorStatus, navigate, form]);
 
@@ -67,7 +67,7 @@ const Signup = () => {
           id: uid,
           name: values.name,
           email: values.email,
-          sub: true,
+          sub: false,
         };
 
         await dispatch(addPatient(newPatient));

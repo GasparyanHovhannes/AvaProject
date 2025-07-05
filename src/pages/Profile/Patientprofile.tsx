@@ -4,9 +4,14 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { clearUser, selectUserData } from "../../features/userSlice";
-import {Avatar, Typography, Divider, Card} from "antd";
+import { clearUser, selectUserData, selectUserSubscriptionStatus } from "../../features/userSlice";
+import {Avatar, Typography, Divider, Card, Modal} from "antd";
 import PatientImage from "../../assets/review2.png"
+import appointmentImage from "../../assets/appointment-card.jpg";
+import { APPOINMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
+import shopImage from "../../assets/shop-card.jpg";
+import careImage from "../../assets/haire-care-card.jpg";
+import { useState } from "react";
 
 const { Title, Text } = Typography;
 
@@ -14,6 +19,17 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectUserData);
+  const subscribed = useAppSelector(selectUserSubscriptionStatus);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
 
   const handleLogout = async () => {
     try {
@@ -48,18 +64,70 @@ const Profile = () => {
         Logout
       </Button>
       <Divider className="custom-divider" />
-      <Card>
-        <Title level={5} className="shop-card">Shop</Title>
-        <Text type="secondary">This is your personal information section.</Text>
-      </Card>
-      <Card>
-        <Title level={5} className="appointments-card">Appointments</Title>
+      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
+      <Card
+        className="appointments-card"
+        onClick={() => navigate(subscribed ? APPOINMENT : SUBSCRIPTION)}
+        hoverable
+        style={{ width: 220 }}
+        cover={
+          <img
+            alt="Appointments"
+            src={appointmentImage}
+            style={{ height: 400, objectFit: "cover" }}
+          />
+        }
+      >
+        <Title level={5} className="appointments-card">
+          Appointments
+        </Title>
         <Text type="secondary">This is your appointments section.</Text>
       </Card>
-      <Card>
-        <Title level={5} className="haircare-card">Hair Care</Title>
-        <Text type="secondary">This is your settings section.</Text>
+
+      <Card
+        className="shop-card"
+        onClick={() => navigate(subscribed ? SHOP : SUBSCRIPTION)}
+        hoverable
+        style={{ width: 400, minHeight: 400, cursor: "pointer" }}
+        cover={
+          <img
+            alt="Another"
+            src={shopImage}
+            style={{ height: 400, objectFit: "cover" }}
+          />
+        }
+      >
+        <Title level={5}>Shop</Title>
+        <Text type="secondary">This is another section.</Text>
       </Card>
+      <Card
+        className="care-card"
+        hoverable
+        onClick={handleCardClick}
+        style={{ width: 400, minHeight: 400, cursor: "pointer" }}
+        cover={
+          <img
+            alt="Example"
+            src={careImage}
+            style={{ height: 400, objectFit: "cover" }}
+          />
+        }
+      >
+        <Title level={5}>Click Me</Title>
+        <Text type="secondary">This card opens a popup</Text>
+      </Card>
+
+      <Modal
+        title="Important Information"
+        open={isModalOpen}
+        onCancel={handleClose}
+        onOk={handleClose}
+        okText="Ok"
+      >
+        <p>This is some extra information for the user.</p>
+        <p>You can add anything here: text, forms, images, etc.</p>
+      </Modal>
+    </div>
     </div>
   );
 };
@@ -67,70 +135,3 @@ const Profile = () => {
 export default Profile;
 
 
-// import "./Patientpofile.css";
-// import {useState} from "react";
-// import {Alert, Button, Divider, Flex, Space} from "antd";
-// import AppointmentsTable from "./components/AppointmentsTable.tsx";
-// import UserInfo from "./components/UserInfo.tsx";
-// import {useNavigate} from "react-router-dom";
-// import {BOOK_APPOINTMENT} from "../../routes/paths.ts";
-// import {FileAddOutlined, LoginOutlined} from "@ant-design/icons";
-// import EditUserInfo from "./components/EditUserInfo.tsx";
-// import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-// import {auth} from "../../services/apiService.ts";
-// import {signOut} from "firebase/auth";import { clearUser } from "../../features/userSlice.ts";
-// import { setPatient } from "../../features/patientSlice.ts";
-
-// const Profile = () => {
-//   const navigate = useNavigate();
-//   const [isEditing, setIsEditing] = useState(false);
-//   const dispatch = useAppDispatch();
-
-//     const handleEdit = () => {
-//         setIsEditing(!isEditing);
-//     };
-
-//     const handleLogOutClick = async () => {
-//         await signOut(auth);
-//         localStorage.removeItem('authToken');
-//         dispatch(clearUser());
-//         dispatch(setPatient(null));
-//         dispatch(setAppointments([]));
-//         navigate('/login');
-//     };
-
-// return (
-//     <>
-//       <Flex align={"center"} justify={"end"}>
-//           <Button onClick={handleLogOutClick} danger>
-//              {translate("logOut")}
-//              <LoginOutlined />
-//           </Button>
-//       </Flex>
-//       {!isEditing ? (
-//         <UserInfo onSetIsEditing={handleEdit} />
-//       ) : (
-//         <EditUserInfo onSetIsEditing={handleEdit} />
-//       )}
-//       <Divider>
-//         <Space wrap>
-//           {translate("yourApp")}
-//           <Button
-//             color="default"
-//             variant="outlined"
-//             onClick={() => navigate(BOOK_APPOINTMENT)}
-//           >
-//             <FileAddOutlined />
-//             {translate("bookAppointment")}
-//           </Button>
-//         </Space>
-//       </Divider>
-//       {!!appointments?.length && <AppointmentsTable />}
-//       {!appointments?.length && (
-//         <Alert message={translate("alertMessage")} type="info" />
-//       )}
-//     </>
-//   );
-// };
-
-// export default Profile;

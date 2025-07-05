@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {type FirebaseApp} from "firebase/app";
+import { type Doctor } from "../features/doctorSlice"; // Adjust the import path as necessary
 
 import {
     addDoc,
@@ -13,7 +14,8 @@ import {
     getDoc,
     setDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    Timestamp,
 } from "firebase/firestore";
 
 const app: FirebaseApp = initializeApp({
@@ -52,6 +54,31 @@ const setData = async <T>(collectionName: CollectionName, data: T, docId?: strin
   }
 };
 
+export const setAppointment = async ({
+  doctor,
+  client,
+  date,
+}: {
+  doctor: string;
+  client: string;
+  date: Date;
+}): Promise<void> => {
+  const appointment = {
+    doctor,
+    client,
+    date: Timestamp.fromDate(date),
+  };
+  await addDoc(collection(db, "appointments"), appointment);
+};
+
+export const getAllDoctors = async (): Promise<Doctor[]> => {
+  const snapshot = await getDocs(collection(db, 'doctor'));
+  const doctors = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Doctor[];
+  return doctors;
+};
 
 const updateData = async <T extends object>(doc_id: string, collectionName: CollectionName, updatedData: T):Promise<void> => {
     const docRef = doc(db, collectionName, doc_id);

@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
-import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP } from "./paths";
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, APPOINMENT, HAIR_CARE } from "./paths";
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import About from "../pages/About/About";
@@ -10,6 +10,7 @@ import Signup from "../pages/Auth/Signup";
 import MasterProfileSection from "../pages/MasterProfile/MasterProfile";
 import Partners from "../pages/Partners/Partners";
 import Subscription from "../pages/SubscriptionSave/Subscription";
+import Appointment from "../pages/Appointments/Appointment";
 
 
 export const router = createBrowserRouter([
@@ -83,5 +84,21 @@ export const router = createBrowserRouter([
         <Layout>
             <Profile />
         </Layout>
-    )}
+    )},
+        {
+    path: APPOINMENT,
+    element: (
+      <Layout>
+        <Appointment />
+      </Layout>
+    ),
+    },
+    {
+        path: HAIR_CARE,
+        element:(
+            <Layout>
+                <div>Hair Care Section</div>
+            </Layout>
+        )    
+    }
 ])
