@@ -16,7 +16,7 @@ import careImage from "../../assets/haire-care-card.jpg";
 import PatientImage from "../../assets/review2.png";
 import { useState, useEffect } from "react";
 import { getHairCareTextByType } from "../../services/apiService";
-import { APPOINMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
+import { APPOINTMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
 
 const { Title, Text } = Typography;
 
@@ -95,7 +95,7 @@ const Profile = () => {
 
         <Card
           className="appointments-card"
-          onClick={() => handleCardClick(APPOINMENT)}
+          onClick={() => handleCardClick(APPOINTMENT)}
           hoverable
           style={{ width: 220 }}
           cover={

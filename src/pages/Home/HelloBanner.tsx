@@ -36,7 +36,6 @@ const HelloBanner: React.FC = () => {
         </Paragraph>
         <Button size="large" onClick={handleClick} style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }} >
             Take the Quiz
-          </NavLink>
         </Button>
       </div>
     </div>
