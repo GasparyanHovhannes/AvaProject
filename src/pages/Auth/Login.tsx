@@ -1,6 +1,6 @@
 import "./Login.css";
 import React, { useState } from "react";
-import { Button, Input, Form, message } from "antd";
+import { Button, Input, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import { SIGNUP, PROFILE, MASTER_PROFILE } from "../../routes/paths";
@@ -18,10 +18,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-  console.log(messageApi)
-
   const onFinish = async (values: { email: string; password: string }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -69,7 +66,6 @@ const Login: React.FC = () => {
 
   return (
     <>
-      {contextHolder}
       <div className="login-root">
         <div className="login-wrapper">
           <div className="login-visual">
