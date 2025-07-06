@@ -10,6 +10,7 @@ import {
   selectUserSubscriptionStatus,
 } from "../../features/userSlice";
 import appointmentImage from "../../assets/appointment-card.jpg";
+
 import shopImage from "../../assets/shop-card.jpg";
 import careImage from "../../assets/haire-care-card.jpg";
 import PatientImage from "../../assets/review2.png";
@@ -76,7 +77,13 @@ const Profile = () => {
         <Title level={4}>{user?.email || "No email available"}</Title>
         <Title level={4}>Hair Type: {hairType}</Title>
       </div>
-
+      <Button
+        onClick={() => navigate("/chats")}
+        className="profile-btn"
+        style={{ marginRight: 12}}
+      >
+        Chats
+      </Button>
       <Button onClick={handleLogout} className="profile-btn">
         Logout
       </Button>
@@ -84,6 +91,7 @@ const Profile = () => {
       <Divider className="custom-divider" />
 
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
+
 
         <Card
           className="appointments-card"
@@ -134,6 +142,7 @@ const Profile = () => {
           <Text type="secondary">Click to view personalized care tips.</Text>
         </Card>
       </div>
+
 
       <Modal
         title="Your Hair Care Tip"

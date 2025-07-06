@@ -1,7 +1,12 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
 
-import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, QUIZ, APPOINMENT, HAIR_CARE } from "./paths";
+
+
+import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, QUIZ, APPOINTMENT, HAIR_CARE } from "./paths";
+
+
+
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import About from "../pages/About/About";
@@ -14,6 +19,8 @@ import Subscription from "../pages/SubscriptionSave/Subscription";
 import Appointment from "../pages/Appointments/Appointment";
 import Quiz from "../pages/Quiz/Quiz";
 
+import Chats from "../pages/Appointments/chats";
+
 
 
 export const router = createBrowserRouter([
@@ -24,6 +31,14 @@ export const router = createBrowserRouter([
                 <Home />
             </Layout>
         )
+    },
+    {
+        path: "/chats",
+        element: (
+            <Layout>
+                <Chats />
+            </Layout>
+        ),
     },
     {
         path: ABOUT,
@@ -97,8 +112,7 @@ export const router = createBrowserRouter([
         </Layout>
     )},
         {
-
-    path: APPOINMENT,
+    path: APPOINTMENT,
     element: (
       <Layout>
         <Appointment />

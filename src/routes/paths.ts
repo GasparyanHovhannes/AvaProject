@@ -10,8 +10,5 @@ export const QUIZ = "/quiz";
 export const SHOP = "/shop";
 export const DOCTOR_CALENDAR = "calendar";
 export const DOCTOR_INFO = "/doctor-info/:id";
-export const APPOINMENT = "/appointment";
+export const APPOINTMENT = "/appointment";
 export const HAIR_CARE = "/hair-care";
-
-
-
