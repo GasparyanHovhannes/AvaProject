@@ -7,7 +7,7 @@ import {
   ShoppingOutlined,
   MenuOutlined
 } from "@ant-design/icons";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   HOME_PAGE,
   ABOUT,
