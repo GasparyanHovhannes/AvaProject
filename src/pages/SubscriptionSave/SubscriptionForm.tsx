@@ -14,7 +14,7 @@ import {
 } from '@ant-design/icons';
 import './SubscriptionForm.css';
 import { useNavigate } from 'react-router';
-import { APPOINMENT, PROFILE } from '../../routes/paths';
+import { APPOINTMENT, PROFILE } from '../../routes/paths';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectUserData } from '../../features/userSlice';
 import { updateUserSubscription } from '../../services/apiService';
@@ -130,7 +130,7 @@ const handleSubmit = () => {
           </Paragraph>
 
           <Form.Item layout='vertical'>
-            <Button htmlType="submit" className="subscribe-btn" onClick={() => navigate(APPOINMENT)}>
+            <Button htmlType="submit" className="subscribe-btn" onClick={() => navigate(APPOINTMENT)}>
               Subscribe Now
             </Button>
             <Button className="back-btn" onClick ={() => navigate(PROFILE)}>
