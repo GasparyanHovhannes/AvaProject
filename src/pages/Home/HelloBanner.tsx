@@ -2,9 +2,9 @@ import React from 'react';
 import { Button, Typography } from 'antd';
 import './HelloBanner.css';
 
-import { NavLink, useNavigate } from 'react-router-dom';
-import { QUIZ, LOGIN, PROFILE} from '../../routes/paths'; 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useNavigate } from 'react-router-dom';
+import { QUIZ, LOGIN} from '../../routes/paths'; 
+import { useAppSelector } from '../../app/hooks';
 import { selectUserData, selectUserRole, selectUserEmailStatus } from '../../features/userSlice';
 
 

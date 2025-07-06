@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   clearUser,
   selectUserData,
-  selectUserSubscriptionStatus,
 } from "../../features/userSlice";
 import appointmentImage from "../../assets/appointment-card.jpg";
 
@@ -28,7 +27,7 @@ const Profile = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hairTip, setHairTip] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false); 
+  const [isSubscribed] = useState(false); 
 
   const handleCardClick = (path: string) => {
     if (isSubscribed) {
@@ -51,10 +50,12 @@ const Profile = () => {
       await signOut(auth);
       dispatch(clearUser());
       navigate("/login");
+        console.log(hairTip);
     } catch (error) {
       console.error("Logout failed:", error);
     }
   };
+
 
   useEffect(() => {
     const fetchHairTip = async () => {

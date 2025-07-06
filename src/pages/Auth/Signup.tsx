@@ -6,8 +6,8 @@ import { LOGIN } from "../../routes/paths";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useState, useEffect } from "react";
 import { fetchData } from "../../services/apiService";
-import { selectPatientStatus, addPatient } from "../../features/patientSlice";
-import { selectDoctorStatus, addDoctor } from "../../features/doctorSlice";
+import { addPatient } from "../../features/patientSlice";
+import { addDoctor } from "../../features/doctorSlice";
 import { type Patient } from "../../features/patientSlice";
 import { type Doctor } from "../../features/doctorSlice";
 import { auth } from "../../services/apiService";
@@ -72,7 +72,6 @@ const Signup = () => {
           sub: false,
         };
 
-        // Сохраняем пользователя в Redux
         dispatch(setUser({
           data: newPatient,
           role: "patient",

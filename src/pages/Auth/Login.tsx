@@ -1,7 +1,7 @@
 import "./Login.css";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Input, Form, message } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { SIGNUP, PROFILE, MASTER_PROFILE } from "../../routes/paths";
 
@@ -18,11 +18,9 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const location = useLocation();
-  const hasNavigated = useRef(false);
-  const [messageApi, contextHolder] = message.useMessage();
+  const [contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-  const signupSuccess = location.state?.signupSuccess;
+
 
   const onFinish = async (values: { email: string; password: string }) => {
     try {

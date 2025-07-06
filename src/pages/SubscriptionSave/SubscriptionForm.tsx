@@ -15,10 +15,8 @@ import {
 import './SubscriptionForm.css';
 import { useNavigate } from 'react-router';
 import { APPOINTMENT, PROFILE } from '../../routes/paths';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectUserData } from '../../features/userSlice';
-import { updateUserSubscription } from '../../services/apiService';
-import { setUserSubscriptionStatus } from '../../features/userSlice';
+
+
 
 const { Title, Paragraph } = Typography;
 
@@ -27,8 +25,6 @@ const { Title, Paragraph } = Typography;
 const SubscriptionForm: React.FC = () => {
   const [form] = Form.useForm();
   const [subscriptionOption, setSubscriptionOption] = useState('monthly');
-  const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUserData)
   const navigate = useNavigate();
 
 const handleSubmit = () => {

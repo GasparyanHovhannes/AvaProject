@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {type FirebaseApp} from "firebase/app";
 import { type Doctor } from "../features/doctorSlice"; 
 import { type Appointment } from "../features/appointmentsSlice"; 
@@ -16,7 +15,6 @@ import {
     getDoc,
     setDoc,
     updateDoc,
-    deleteDoc,
     Timestamp,
     where,
     query,
@@ -33,7 +31,6 @@ const app: FirebaseApp = initializeApp({
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID,
 });
 import { getAuth, type Auth } from "firebase/auth";
-const analytics = getAnalytics(app);
 
 const auth: Auth = getAuth(app);
 const db: Firestore = getFirestore(app);
