@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, List, Avatar, Rate, Space, Row, Col, Card, Button } from 'antd';
+import { Typography, List, Avatar, Rate, Row, Col, Card, Button } from 'antd';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 import './AdditionalSections.css';
 import REVIEW1 from '..//..//assets//review1.png';

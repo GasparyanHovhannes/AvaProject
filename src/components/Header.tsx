@@ -24,13 +24,12 @@ import {
   selectUserRole,
   selectUserEmailStatus,
 } from "../features/userSlice";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const { Header } = Layout;
 const { Text } = Typography;
 
 const HeaderComponent = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const userData = useAppSelector(selectUserData);
   const userRole = useAppSelector(selectUserRole);

@@ -14,8 +14,8 @@ import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 
 import './Appointment.css';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectUserData, selectUserRole } from '../../features/userSlice';
+import { useAppSelector } from '../../app/hooks';
+import { selectUserData } from '../../features/userSlice';
 import {
   db,
   getAllDoctors,
@@ -41,8 +41,7 @@ const Appointment = () => {
 
   const navigate = useNavigate();
   const master = useAppSelector(selectUserData);
-  const role = useAppSelector(selectUserRole);
-  const dispatch = useAppDispatch();
+
 
   useEffect(() => {
     getAllDoctors()
