@@ -26,27 +26,27 @@ const About = () => {
         <Col xs={24} md={8}>
           <Card bordered className="value_box">
             <img src={leaf} alt="Sustainability" className="image" />
-            <Title level={4} className="value_box_title">Sustainability</Title>
+            <Title level={4} className="value_box_title">Authenticity Over Perfection</Title>
             <Text className="value_box_desk">
-              We're dedicated to minimizing our environmental impact through sustainable sourcing, packaging, and production practices.
+              We embrace real hair, real struggles, and real progress. We support your journey, whether it’s frizzy, flat, fabulous - or all three.
             </Text>
           </Card>
         </Col>
         <Col xs={24} md={8}>
           <Card bordered className="value_box">
             <img src={heart} alt="Personalization" className="image" />
-            <Title level={4} className="value_box_title">Personalization</Title>
+            <Title level={4} className="value_box_title">Education Over Sales</Title>
             <Text className="value_box_desk">
-              We believe in the power of personalized hair care, tailoring our products to meet the unique needs of each individual.
+              We’re not here to sell you products. We’re here to help you understand your hair and make smart choices with confidence. Our goal is to empower you with knowledge.
             </Text>
           </Card>
         </Col>
         <Col xs={24} md={8}>
           <Card bordered className="value_box">
             <img src={community} alt="Community" className="image" />
-            <Title level={4} className="value_box_title">Community</Title>
+            <Title level={4} className="value_box_title">Trust and Confidence Matter</Title>
             <Text className="value_box_desk">
-              We foster a community of hair enthusiasts, sharing knowledge, tips, and support to help everyone achieve their hair goals.
+              We provide honest, expert advice and only recommend products we truly stand behind. You can count on us to give clear, reliable guidance, so you feel confident.
             </Text>
           </Card>
         </Col>
@@ -75,14 +75,16 @@ const About = () => {
 
       <Divider />
 
-      <Title className="desk_title" level={3}>The Science Behind Our Products</Title>
+      <Title className="desk_title" level={3}>Our Story</Title>
       <Paragraph className="desk">
-        Our products are formulated using cutting-edge science and high-quality ingredients. We leverage advanced algorithms and data analysis to personalize each formula, ensuring it's perfectly suited to your unique hair type and needs. Our team of experts continuously researches and develops new technologies to enhance the effectiveness of our products.
+        We saw your pain - struggling with your hair care, the wasted products, the confusion. That’s exactly the reason why Ava was born - to turn your hair care routine from a daily struggle into a magical ritual.
+Thanks to the support of our first investors, Devhacks, we found the right professionals to join our vision - and that’s when our journey truly began. A journey dedicated to one goal: helping you transform your hair into its healthiest, most confident form.
+
       </Paragraph>
 
-      <Title className="desk_title" level={3}>Our Commitment to Quality</Title>
+      <Title className="desk_title" level={3}>Our Mission</Title>
       <Paragraph className="desk">
-        We're committed to using only the finest ingredients in our products. Our formulations are free from harsh chemicals and are cruelty-free. We work closely with our suppliers to ensure ethical and sustainable sourcing practices. Every product undergoes rigorous testing to meet our high standards of quality and performance.
+        Less confusion. More confidence. Flawless hair.
       </Paragraph>
 
       <Title className="desk_title" level={3}>Join Our Community</Title>

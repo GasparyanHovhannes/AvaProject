@@ -2,7 +2,6 @@ import { setData, updateData } from '../services/apiService.ts';
 import { createAppSlice } from '../app/createAppSlice.ts';
 
 export interface Patient {
-    unavailable: any;
     id?: string;
     email: string;
     name: string;
