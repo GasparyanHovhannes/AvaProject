@@ -1,19 +1,22 @@
 import "./Patientpofile.css"
-import { Button } from "antd";
+import { Button, Avatar, Typography, Divider, Card, Modal } from "antd";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/apiService";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-
-import { clearUser, selectUserData, selectUserSubscriptionStatus } from "../../features/userSlice";
-import {Avatar, Typography, Divider, Card, Modal} from "antd";
-import PatientImage from "../../assets/review2.png"
+import {
+  clearUser,
+  selectUserData,
+  selectUserSubscriptionStatus,
+} from "../../features/userSlice";
 import appointmentImage from "../../assets/appointment-card.jpg";
-import { APPOINTMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
+
 import shopImage from "../../assets/shop-card.jpg";
 import careImage from "../../assets/haire-care-card.jpg";
-import { useState } from "react";
-
+import PatientImage from "../../assets/review2.png";
+import { useState, useEffect } from "react";
+import { getHairCareTextByType } from "../../services/apiService";
+import { APPOINMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
 
 const { Title, Text } = Typography;
 
@@ -21,19 +24,27 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectUserData);
+  const hairType = user?.type || "No hair type available";
 
-  const subscribed = useAppSelector(selectUserSubscriptionStatus);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hairTip, setHairTip] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false); 
 
-  const handleCardClick = () => {
+  const handleCardClick = (path: string) => {
+    if (isSubscribed) {
+      navigate(path);
+    } else {
+      navigate(SUBSCRIPTION);
+    }
+  };
+
+  const handleHairCareClick = () => {
     setIsModalOpen(true);
   };
 
   const handleClose = () => {
     setIsModalOpen(false);
   };
-
-
 
   const handleLogout = async () => {
     try {
@@ -45,30 +56,26 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchHairTip = async () => {
+      if (typeof user?.type === "number") {
+        const tip = await getHairCareTextByType(user.type);
+        setHairTip(tip);
+      }
+    };
+
+    fetchHairTip();
+  }, [user?.type]);
+
   return (
     <div className="profile-container">
       <h1>Profile Page</h1>
+
       <div className="profile-info">
-        <Avatar className="profile-avatar"
-          size={96}
-          src={PatientImage}
-        />
-        <Title level={4} className="username">
-          {user?.name
-            ? `${user.name}`
-            : "No name available"}
-        </Title>
-        <Title level={4}>
-          {user?.email
-            ? `${user.email}`
-            : "No email available"}
-        </Title>
-        <Title level={4}>
-          {user?.type
-            ? `hair type = ${user.type}`
-            : "No type available"
-          }
-        </Title>
+        <Avatar className="profile-avatar" size={96} src={PatientImage} />
+        <Title level={4} className="username">{user?.name || "No name available"}</Title>
+        <Title level={4}>{user?.email || "No email available"}</Title>
+        <Title level={4}>Hair Type: {hairType}</Title>
       </div>
       <Button
         onClick={() => navigate("/chats")}
@@ -80,75 +87,79 @@ const Profile = () => {
       <Button onClick={handleLogout} className="profile-btn">
         Logout
       </Button>
-      <Divider className="custom-divider" />
-      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
-      <Card
-        className="appointments-card"
-        onClick={() => navigate(subscribed ? APPOINTMENT : SUBSCRIPTION)}
-        hoverable
-        style={{ width: 220 }}
-        cover={
-          <img
-            alt="Appointments"
-            src={appointmentImage}
-            style={{ height: 400, objectFit: "cover" }}
-          />
-        }
-      >
-        <Title level={5}>
-          Appointments
-        </Title>
-        <Text type="secondary">This is your appointments section.</Text>
-      </Card>
 
-      <Card
-        className="shop-card"
-        onClick={() => navigate(subscribed ? SHOP : SUBSCRIPTION)}
-        hoverable
-        style={{ width: 400, minHeight: 400, cursor: "pointer" }}
-        cover={
-          <img
-            alt="Another"
-            src={shopImage}
-            style={{ height: 400, objectFit: "cover" }}
-          />
-        }
-      >
-        <Title level={5}>Shop</Title>
-        <Text type="secondary">This is another section.</Text>
-      </Card>
-      <Card
-        className="care-card"
-        hoverable
-        onClick={handleCardClick}
-        style={{ width: 400, minHeight: 400, cursor: "pointer" }}
-        cover={
-          <img
-            alt="Example"
-            src={careImage}
-            style={{ height: 400, objectFit: "cover" }}
-          />
-        }
-      >
-        <Title level={5}>Click Me</Title>
-        <Text type="secondary">This card opens a popup</Text>
-      </Card>
+      <Divider className="custom-divider" />
+
+      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
+
+
+        <Card
+          className="appointments-card"
+          onClick={() => handleCardClick(APPOINMENT)}
+          hoverable
+          style={{ width: 220 }}
+          cover={
+            <img
+              alt="Appointments"
+              src={appointmentImage}
+              style={{ height: 400, objectFit: "cover" }}
+            />
+          }
+        >
+          <Title level={5}>Appointments</Title>
+          <Text type="secondary">Book appointments (if subscribed).</Text>
+        </Card>
+        <Card
+          className="shop-card"
+          onClick={() => navigate(SHOP)}
+          hoverable
+          style={{ width: 400, minHeight: 400, cursor: "pointer" }}
+          cover={
+            <img
+              alt="Shop"
+              src={shopImage}
+              style={{ height: 400, objectFit: "cover" }}
+            />
+          }
+        >
+          <Title level={5}>Shop</Title>
+          <Text type="secondary">Access the shop (if subscribed).</Text>
+        </Card>
+        <Card
+          className="care-card"
+          onClick={handleHairCareClick}
+          hoverable
+          style={{ width: 400, minHeight: 400, cursor: "pointer" }}
+          cover={
+            <img
+              alt="Hair Care"
+              src={careImage}
+              style={{ height: 400, objectFit: "cover" }}
+            />
+          }
+        >
+          <Title level={5}>Your Hair Care</Title>
+          <Text type="secondary">Click to view personalized care tips.</Text>
+        </Card>
+      </div>
+
 
       <Modal
-        title="Important Information"
+        title="Your Hair Care Tip"
         open={isModalOpen}
         onCancel={handleClose}
         onOk={handleClose}
         okText="Ok"
       >
-        <p>This is some extra information for the user.</p>
-        <p>You can add anything here: text, forms, images, etc.</p>
+        <p>
+          Keep your hair healthy by washing it regularly with a 
+          gentle shampoo and conditioner. Avoid excessive heat styling and harsh chemicals. 
+          Eat a balanced diet, stay hydrated, and trim your hair regularly to prevent split ends. 
+          Protect your hair from sun damage and use nourishing treatments to maintain shine and strength.
+        </p>
       </Modal>
-    </div>
     </div>
   );
 };
 
-
 export default Profile;
-

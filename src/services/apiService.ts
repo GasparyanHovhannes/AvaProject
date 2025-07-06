@@ -18,6 +18,8 @@ import {
     updateDoc,
     deleteDoc,
     Timestamp,
+    where,
+    query,
 } from "firebase/firestore";
 
 const app: FirebaseApp = initializeApp({
@@ -84,6 +86,16 @@ export const getAppointmentsForDoctor = async (doctorEmail: string): Promise<App
   return filtered;
 };
 
+export const getHairCareTextByType = async (hairType: number) => {
+  const q = query(collection(db, "HairCare"), where("type", "==", Number(hairType)));
+  const snapshot = await getDocs(q);
+
+  if (!snapshot.empty) {
+    return snapshot.docs[0].data().text;
+  } else {
+    return "No hair care tips found for your hair type.";
+  }
+};
 
 export const getAllDoctors = async (): Promise<Doctor[]> => {
   const snapshot = await getDocs(collection(db, 'doctor'));
@@ -107,17 +119,33 @@ export const getAllDoctors = async (): Promise<Doctor[]> => {
   });
 };
 
-const updateData = async <T extends object>(doc_id: string, collectionName: CollectionName, updatedData: T):Promise<void> => {
-    const docRef = doc(db, collectionName, doc_id);
-    await updateDoc(docRef, updatedData);
-}
+const updateData = async <T extends object>(
+  docId: string,
+  collectionName: CollectionName,
+  updatedData: T
+): Promise<void> => {
+  const docRef = doc(db, collectionName, docId);
+  await updateDoc(docRef, updatedData);
+};
+
+export const updateUserSubscription = async (): Promise<void> => {
+  const user = auth.currentUser;
+  if (!user) throw new Error("User is not logged in");
+
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) throw new Error("User document does not exist");
+
+  await updateDoc(userRef, { sub: true });
+};
+
 
 const getData = async <T>(id: string, collectionName: CollectionName,):Promise<T> => {
     const docRef = doc(db, collectionName, id);
     const docSnap = await getDoc(docRef);
     return {...docSnap.data(), doc_id: id} as T;
 }
-
 export const fetchDataById = async <T>(
   collectionName: string,
   docId: string

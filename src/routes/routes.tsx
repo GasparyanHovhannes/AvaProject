@@ -2,7 +2,9 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { Layout } from "../components/Layout";
 
 
+
 import { HOME_PAGE, ABOUT, PROFILE, LOGIN, SIGNUP, MASTER_PROFILE,PARTNERS, SUBSCRIPTION, SHOP, QUIZ, APPOINTMENT, HAIR_CARE } from "./paths";
+
 
 
 import Home from "../pages/Home/Home";
@@ -16,7 +18,9 @@ import Partners from "../pages/Partners/Partners";
 import Subscription from "../pages/SubscriptionSave/Subscription";
 import Appointment from "../pages/Appointments/Appointment";
 import Quiz from "../pages/Quiz/Quiz";
+
 import Chats from "../pages/Appointments/chats";
+
 
 
 export const router = createBrowserRouter([

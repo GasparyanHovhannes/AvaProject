@@ -65,10 +65,6 @@ const userSlice = createAppSlice({
   }),
   selectors: {
     selectUserSubscriptionStatus: state => state.subscribed,
-    selectUserData: (state) => state.data,
-    selectUserRole: (state) => state.role,
-    selectUserToken: (state) => state.token,
-    selectUserEmailStatus: (state) => state.isEmailVerified,
     selectUserHairType: (state) => state.data?.type ?? "undefined",
     selectUserEmail: (state) => state.email, 
     selectUserType: (state) => state.type, 
