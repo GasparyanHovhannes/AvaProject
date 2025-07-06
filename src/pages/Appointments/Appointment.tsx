@@ -22,7 +22,7 @@ import {
   setAppointment,
 } from '../../services/apiService';
 import type { Doctor } from '../../features/doctorSlice';
-import REVIEW1 from '..\\..\\assets\\review1.png';
+import REVIEW1 from '..//..//assets//review1.png';
 
 
 const { Title, Text } = Typography;

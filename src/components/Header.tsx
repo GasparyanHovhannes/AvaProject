@@ -14,7 +14,8 @@ import {
   PROFILE,
   LOGIN,
   PARTNERS,
-  SHOP
+  SHOP, 
+  MASTER_PROFILE
 } from "../routes/paths";
 import { useAppSelector } from "../app/hooks";
 import {
@@ -75,11 +76,8 @@ const HeaderComponent = () => {
   ];
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  // Определяем, мобильный ли экран
   const isMobile = window.innerWidth < 768;
 
-  // Для активного пункта меню
   const getSelectedKey = () => {
     if (location.pathname.startsWith("/about")) return "about";
     if (location.pathname.startsWith("/profile")) return "profile";

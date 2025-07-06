@@ -34,25 +34,14 @@
   border-color: #d9d9d9;
 }
 
-
-.ant-card {
-  margin-bottom: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
-  width: 320px !important;
-}
-
-.ant-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
 .shop-card,
 .appointments-card,
 .haircare-card {
   margin-bottom: 8px;
   color: #1890ff;
   font-weight: 600;
+  width: 400px !important;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .profile-cards-wrapper {
@@ -60,14 +49,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  max-width: 1000px;
   margin: 0 auto;
 }
-.shop-card,
-.appointments-card,
-.care-card{
-      transition: transform 0.3s, box-shadow 0.3s;
-}
+
 .shop-card:hover,
 .appointments-card:hover,
 .care-card:hover {

@@ -12,21 +12,30 @@ import {
   PercentageOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-
 import './SubscriptionForm.css';
-import { NavLink, useNavigate } from 'react-router';
-import { PROFILE } from '../../routes/paths';
+import { useNavigate } from 'react-router';
+import { APPOINMENT, PROFILE } from '../../routes/paths';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectUserData } from '../../features/userSlice';
+import { updateUserSubscription } from '../../services/apiService';
+import { setUserSubscriptionStatus } from '../../features/userSlice';
 
 const { Title, Paragraph } = Typography;
+
+
 
 const SubscriptionForm: React.FC = () => {
   const [form] = Form.useForm();
   const [subscriptionOption, setSubscriptionOption] = useState('monthly');
-
-  const handleSubmit = (values: any) => {
-    console.log('Form Submitted:', values);
-  };
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUserData)
   const navigate = useNavigate();
+
+const handleSubmit = () => {
+  sessionStorage.setItem("subscribed", "true"); // Save subscription status
+  navigate("/profile"); // Redirect to profile
+};
+
 
   return (
     <div className="subscription-container">
@@ -121,7 +130,7 @@ const SubscriptionForm: React.FC = () => {
           </Paragraph>
 
           <Form.Item layout='vertical'>
-            <Button htmlType="submit" className="subscribe-btn">
+            <Button htmlType="submit" className="subscribe-btn" onClick={() => navigate(APPOINMENT)}>
               Subscribe Now
             </Button>
             <Button className="back-btn" onClick ={() => navigate(PROFILE)}>

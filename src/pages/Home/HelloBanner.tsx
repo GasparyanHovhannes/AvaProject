@@ -1,12 +1,28 @@
 import React from 'react';
 import { Button, Typography } from 'antd';
 import './HelloBanner.css';
-import { NavLink } from 'react-router-dom';
-import { QUIZ } from '../../routes/paths'; // Adjust the import path as necessary
+import { NavLink, useNavigate } from 'react-router-dom';
+import { QUIZ, LOGIN, PROFILE} from '../../routes/paths'; 
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectUserData, selectUserRole, selectUserEmailStatus } from '../../features/userSlice';
 
 const { Title, Paragraph } = Typography;
 
 const HelloBanner: React.FC = () => {
+    const userData = useAppSelector(selectUserData);
+    const userRole = useAppSelector(selectUserRole);
+    const userStatus = useAppSelector(selectUserEmailStatus);
+    const navigate = useNavigate()
+    const isLoggedIn = Boolean(userData && userStatus);
+  const isDoctor = userRole === "doctor";
+
+  const handleClick = () => {
+    if (!isLoggedIn) {
+      navigate(LOGIN);
+    } else if (!isDoctor) {
+      navigate(QUIZ);
+    }
+  };
   return (
     <div className="hero-container">
       <div className="hero-content">
@@ -16,8 +32,7 @@ const HelloBanner: React.FC = () => {
         <Paragraph style={{ color: 'white', maxWidth: 400 }}>
           Discover the perfect hair care routine tailored to your unique needs.
         </Paragraph>
-        <Button size="large" style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }}>
-          <NavLink to={QUIZ} style={{ color: 'white', textDecoration: 'none' }}>
+        <Button size="large" onClick={handleClick} style={{ backgroundColor: '#e8752a', borderColor: '#e8752a', color: 'white' }} >
             Take the Quiz
         </Button>
       </div>
