@@ -12,6 +12,3 @@ export const DOCTOR_CALENDAR = "calendar";
 export const DOCTOR_INFO = "/doctor-info/:id";
 export const APPOINTMENT = "/appointment";
 export const HAIR_CARE = "/hair-care";
-
-
-

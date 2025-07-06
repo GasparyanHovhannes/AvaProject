@@ -13,7 +13,7 @@ const stories = [
     name: 'Sophia Bennett',
     ago: '2 months ago',
     avatar: REVIEW1,
-    text: "I've struggled with finding the right products for my hair for years. ÁVA's personalized approach has been a game-changer! My hair has never felt healthier.",
+    text: "Thanks Ava for giving me this opportunity that I never knew I needed. The consultations are life-changers, my hair’s shining",
     likes: 12,
     dislikes: 1,
   },
@@ -21,7 +21,7 @@ const stories = [
     name: 'Olivia Carter',
     ago: '3 months ago',
     avatar: REVIEW2,
-    text: 'I was skeptical at first, but the personalized formula is amazing. My hair is softer, shinier, and more manageable than ever before.',
+    text: 'So thoughtful that they offer the delievery, saves so much time💖 Btw Ana hairstylist is my favorite person now😍',
     likes: 15,
     dislikes: 0,
   },
@@ -90,7 +90,7 @@ export const CustomerStoriesSection: React.FC = () => {
 export const TipsSection: React.FC = () => {
   return (
     <div className="tips-section">
-      <Title level={4} className="tips-title">Hairstyle Ideas</Title>
+      <Title level={4} className="tips-title">Weekly Hair Care Tips</Title>
       <Row gutter={[16, 16]}>
         {tips.map((tip) => (
           <Col xs={24} sm={12} md={8} key={tip.title}>

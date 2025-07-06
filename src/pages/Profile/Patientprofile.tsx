@@ -9,7 +9,7 @@ import { clearUser, selectUserData, selectUserSubscriptionStatus } from "../../f
 import {Avatar, Typography, Divider, Card, Modal} from "antd";
 import PatientImage from "../../assets/review2.png"
 import appointmentImage from "../../assets/appointment-card.jpg";
-import { APPOINMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
+import { APPOINTMENT, SHOP, SUBSCRIPTION } from "../../routes/paths";
 import shopImage from "../../assets/shop-card.jpg";
 import careImage from "../../assets/haire-care-card.jpg";
 import { useState } from "react";
@@ -83,8 +83,8 @@ const Profile = () => {
       <Divider className="custom-divider" />
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }} className="profile-cards-wrapper">
       <Card
-        className="appointments-card
-        onClick={() => navigate(subscribed ? APPOINMENT : SUBSCRIPTION)}
+        className="appointments-card"
+        onClick={() => navigate(subscribed ? APPOINTMENT : SUBSCRIPTION)}
         hoverable
         style={{ width: 220 }}
         cover={
