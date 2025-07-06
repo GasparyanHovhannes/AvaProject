@@ -12,15 +12,15 @@ import { setEmailVerified, setUser } from "../../features/userSlice";
 import { useAppDispatch } from "../../app/hooks.ts";
 import { auth } from "../../services/apiService";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import loginImage from "../../assets/login-image.jpg"; // 
+import loginImage from "../../assets/login-image.jpg"; 
 
 const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [contextHolder] = message.useMessage();
+  const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-
+  console.log(messageApi)
 
   const onFinish = async (values: { email: string; password: string }) => {
     try {
